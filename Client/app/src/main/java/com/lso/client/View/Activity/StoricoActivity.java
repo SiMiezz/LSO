@@ -4,38 +4,41 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageButton;
 
+import com.google.android.material.card.MaterialCardView;
 import com.lso.client.R;
 
-public class SignupActivity extends AppCompatActivity {
+public class StoricoActivity extends AppCompatActivity {
 
-    private EditText usernameText;
-    private EditText passwordText;
-    private EditText confirmPasswordText;
-    private Button registraFaceIdButton;
-    private Button registraButton;
+    private ImageButton backButton;
+    private MaterialCardView cocktailButton;
+    private MaterialCardView frullatiButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_storico);
 
-        usernameText = findViewById(R.id.username_text_signup);
-        passwordText = findViewById(R.id.password_text_signup);
-        confirmPasswordText = findViewById(R.id.confirm_password_text_signup);
-        registraFaceIdButton = findViewById(R.id.registra_faceid_button_signup);
-        registraButton = findViewById(R.id.registra_button_signup);
+        backButton = findViewById(R.id.back_button_storico);
+        cocktailButton = findViewById(R.id.cocktail_button_storico);
+        frullatiButton = findViewById(R.id.frullati_button_storico);
 
-        registraFaceIdButton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
             }
         });
 
-        registraButton.setOnClickListener(new View.OnClickListener() {
+        cocktailButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        frullatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 

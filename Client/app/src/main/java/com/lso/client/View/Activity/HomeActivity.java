@@ -2,15 +2,19 @@ package com.lso.client.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import com.google.android.material.card.MaterialCardView;
 import com.lso.client.R;
 
 public class HomeActivity extends AppCompatActivity {
 
     private ImageButton logoutButton;
+    private MaterialCardView acquistaButton;
+    private MaterialCardView storicoButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,6 +22,31 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         logoutButton = findViewById(R.id.logout_button_home);
+        acquistaButton = findViewById(R.id.acquista_button_home);
+        storicoButton = findViewById(R.id.storico_button_home);
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        acquistaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), AcquistaActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        storicoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), StoricoActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
