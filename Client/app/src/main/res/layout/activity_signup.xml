@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.Activity.LoginActivity">
+    tools:context=".View.Activity.SignupActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -26,29 +26,29 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_marginTop="140dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/LoginImage">
+                    android:src="@drawable/SignupImage"
+                    android:layout_marginLeft="0dp">
                 </ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Bentornato!\nEffettua l'accesso"
+                    android:text="Unisciti!"
                     android:textColor="#FE7E07"
                     android:textSize="34sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.154"
+                    app:layout_constraintHorizontal_bias="0.781"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.165" />
+                    app:layout_constraintVertical_bias="0.171" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -101,15 +101,59 @@
                         android:paddingLeft="20dp"
                         android:textSize="25sp"
                         android:textColor="@color/black"
-                        android:background="@android:color/transparent"
-                        android:inputType="textPassword"/>
+                        android:background="@android:color/transparent"/>
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="70dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginHorizontal="30dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="#EEE">
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Confirm Password"
+                        android:paddingLeft="20dp"
+                        android:textSize="25sp"
+                        android:textColor="@color/black"
+                        android:background="@android:color/transparent"/>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="40dp"
+                    android:layout_marginHorizontal="90dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="#D21A3D">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="Registra Face-Id"
+                        android:gravity="center"
+                        android:textSize="25sp"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"/>
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@android:color/transparent" />
+
+
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#FE7E07">
@@ -132,52 +176,9 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="30dp"
-                    app:cardCornerRadius="10dp"
-                    android:backgroundTint="#FE7E07">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:text="Accedi"
-                        android:gravity="center"
-                        android:textSize="25sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"/>
 
-                    <Button
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent" />
 
-                </com.google.android.material.card.MaterialCardView>
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="40dp"
-                    android:layout_gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Non hai un account?"
-                        android:textSize="22sp"
-                        android:textColor="#787486"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="15dp"
-                        android:text="Registrati ora"
-                        android:textSize="22sp"
-                        android:textColor="#FE7E07"
-                        android:textStyle="bold"/>
-                </LinearLayout>
 
 
             </LinearLayout>
