@@ -19,21 +19,22 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
-            android:layout_weight="0.5">
+            android:layout_weight="0.6">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_marginTop="140dp"
+                    android:layout_marginTop="0dp"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:src="@drawable/loginImage">
+                    android:src="@drawable/login_image"
+                    >
                 </ImageView>
 
                 <TextView
@@ -41,7 +42,7 @@
                     android:layout_height="wrap_content"
                     android:text="Bentornato!\nEffettua l'accesso"
                     android:textColor="#FE7E07"
-                    android:textSize="34sp"
+                    android:textSize="25sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:backgroundTint="@color/white"
-            android:layout_weight="0.5">
+            android:layout_weight="0.4">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,8 +70,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#EEE">
@@ -80,7 +81,7 @@
                         android:layout_height="match_parent"
                         android:hint="Username"
                         android:paddingLeft="20dp"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"/>
 
@@ -88,8 +89,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#EEE">
@@ -99,7 +100,7 @@
                         android:layout_height="match_parent"
                         android:hint="Password"
                         android:paddingLeft="20dp"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textColor="@color/black"
                         android:background="@android:color/transparent"
                         android:inputType="textPassword"/>
@@ -108,8 +109,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="80dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="60dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#FE7E07">
@@ -119,7 +120,7 @@
                         android:layout_height="match_parent"
                         android:text="Accedi con Face-Id"
                         android:gravity="center"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
 
@@ -134,8 +135,8 @@
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="30dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#FE7E07">
@@ -145,7 +146,7 @@
                         android:layout_height="match_parent"
                         android:text="Accedi"
                         android:gravity="center"
-                        android:textSize="25sp"
+                        android:textSize="20sp"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
 
@@ -166,7 +167,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Non hai un account?"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         android:textColor="#787486"/>
 
                     <TextView
@@ -174,7 +175,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"
                         android:text="Registrati ora"
-                        android:textSize="22sp"
+                        android:textSize="20sp"
                         android:textColor="#FE7E07"
                         android:textStyle="bold"/>
                 </LinearLayout>
