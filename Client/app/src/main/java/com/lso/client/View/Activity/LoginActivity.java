@@ -30,6 +30,21 @@ public class LoginActivity extends AppCompatActivity {
         accediButton = findViewById(R.id.accedi_button_login);
         registratiLink = findViewById(R.id.registrati_link_text_login);
 
+        accediFaceidButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        accediButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                startActivity(intent);
+            }
+        });
 
         registratiLink.setOnClickListener(new View.OnClickListener() {
             @Override
