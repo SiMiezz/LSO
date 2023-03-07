@@ -77,9 +77,11 @@
                     android:backgroundTint="#EEE">
 
                     <EditText
+                        android:id="@+id/username_text_login"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Username"
+                        android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -96,9 +98,11 @@
                     android:backgroundTint="#EEE">
 
                     <EditText
+                        android:id="@+id/password_text_login"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Password"
+                        android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -125,6 +129,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/accedi_faceid_button_login"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
@@ -151,6 +156,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/accedi_button_login"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
@@ -171,6 +177,7 @@
                         android:textColor="#787486"/>
 
                     <TextView
+                        android:id="@+id/registrati_link_text_login"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="15dp"

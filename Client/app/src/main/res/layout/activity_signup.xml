@@ -76,9 +76,11 @@
                     android:backgroundTint="#EEE">
 
                     <EditText
+                        android:id="@+id/username_text_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Username"
+                        android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -95,9 +97,11 @@
                     android:backgroundTint="#EEE">
 
                     <EditText
+                        android:id="@+id/password_text_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Password"
+                        android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -115,9 +119,11 @@
                     android:backgroundTint="#EEE">
 
                     <EditText
+                        android:id="@+id/confirm_password_text_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:hint="Confirm Password"
+                        android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
                         android:textColor="@color/black"
@@ -144,6 +150,7 @@
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/registra_faceid_button_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
@@ -163,13 +170,14 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Accedi con Face-Id"
+                        android:text="Registrati"
                         android:gravity="center"
                         android:textSize="20sp"
                         android:textColor="@color/white"
                         android:textStyle="bold"/>
 
                     <Button
+                        android:id="@+id/registra_button_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent" />
