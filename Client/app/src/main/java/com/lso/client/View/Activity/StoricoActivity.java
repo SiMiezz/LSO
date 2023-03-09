@@ -2,6 +2,7 @@ package com.lso.client.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -34,14 +35,20 @@ public class StoricoActivity extends AppCompatActivity {
         cocktailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
+                String category = "Cocktail";
+                intent.putExtra("category",category);
+                startActivity(intent);
             }
         });
 
         frullatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
+                String category = "Frullati";
+                intent.putExtra("category",category);
+                startActivity(intent);
             }
         });
     }
