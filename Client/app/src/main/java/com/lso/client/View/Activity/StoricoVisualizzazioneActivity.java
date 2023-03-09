@@ -1,6 +1,7 @@
 package com.lso.client.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
@@ -8,7 +9,11 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.lso.client.Model.Bevanda;
 import com.lso.client.R;
+import com.lso.client.View.Adapter.StoricoAdapter;
+
+import java.util.ArrayList;
 
 public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
@@ -16,6 +21,7 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private TextView categoryText;
     private String category;
+    private ArrayList<Bevanda> bevandeArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,24 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
         categoryText = findViewById(R.id.category_text_storico_visualizzazione);
 
         categoryText.setText(category);
+
+        //presenter.getBevandeFromDB()
+
+        bevandeArrayList = new ArrayList<>();
+
+        // set array list con presenter ( query filtrando cocktail/frullati a seconda del categoryText.getText() )
+
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+
+        StoricoAdapter storicoAdapter = new StoricoAdapter(this, bevandeArrayList);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(storicoAdapter);
 
     }
 
