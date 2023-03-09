@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lso.client.Model.Bevanda;
 import com.lso.client.R;
+import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
 
@@ -42,7 +43,8 @@ public class StoricoAdapter extends RecyclerView.Adapter<StoricoAdapter.StoricoH
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context);
+                bevandaInfoDialog.show();
             }
         });
 
