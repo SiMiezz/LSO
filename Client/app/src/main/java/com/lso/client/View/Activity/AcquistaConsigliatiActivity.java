@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
@@ -15,8 +16,10 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lso.client.Model.Bevanda;
+import com.lso.client.Model.Ingrediente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.ConsigliatiAdapter;
+import com.lso.client.View.Adapter.IngredientiSpinnerAdapter;
 
 import java.util.ArrayList;
 
@@ -32,6 +35,7 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
     private FloatingActionButton carrelloButton;
 
     private ArrayList<Bevanda> bevandeArrayList;
+    private ArrayList<Ingrediente> ingredientiArrayList;
 
     private String category;
 
@@ -55,6 +59,36 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
         categoryText.setText(category);
 
         bevandeArrayList = new ArrayList<>();
+        ingredientiArrayList = new ArrayList<>();
+
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+        ingredientiArrayList.add(new Ingrediente("gin"));
+        ingredientiArrayList.add(new Ingrediente("tonica"));
+
+
+        IngredientiSpinnerAdapter ingredientiSpinnerAdapter = new IngredientiSpinnerAdapter(this, 0, ingredientiArrayList);
+        spinner.setAdapter(ingredientiSpinnerAdapter);
 
         bevandeArrayList.add(new Bevanda("negroni", 5.99f));
         bevandeArrayList.add(new Bevanda("spritz", 4.99f));
@@ -87,6 +121,7 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(consigliatiAdapter);
+
 
     }
 
