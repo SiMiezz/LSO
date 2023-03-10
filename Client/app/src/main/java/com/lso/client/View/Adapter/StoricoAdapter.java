@@ -36,14 +36,16 @@ public class StoricoAdapter extends RecyclerView.Adapter<StoricoAdapter.StoricoH
     @Override
     public void onBindViewHolder(@NonNull StoricoAdapter.StoricoHolder holder, int position) {
 
-        holder.nomeBevanda.setText(bevandeArrayList.get(position).getNome().toUpperCase());
+        Bevanda bevanda = bevandeArrayList.get(position);
+
+        holder.nomeBevanda.setText(bevanda.getNome().toUpperCase());
 
         holder.prezzoBevanda.setText(String.valueOf(bevandeArrayList.get(position).getPrezzo()));
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context);
+                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, bevanda);
                 bevandaInfoDialog.show();
             }
         });

@@ -47,6 +47,26 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
         bevandeArrayList.add(new Bevanda("spritz", 4.99f));
         bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
         bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
 
         StoricoAdapter storicoAdapter = new StoricoAdapter(this, bevandeArrayList);
 
