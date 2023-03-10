@@ -38,7 +38,10 @@ public class AcquistaSceltaCocktailActivity extends AppCompatActivity {
         consigliatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), AcquistaConsigliatiActivity.class);
+                String category = "Cocktail";
+                intent.putExtra("category",category);
+                startActivity(intent);
             }
         });
     }

@@ -38,7 +38,10 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
         consigliatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(getApplicationContext(), AcquistaConsigliatiActivity.class);
+                String category = "Frullati";
+                intent.putExtra("category",category);
+                startActivity(intent);
             }
         });
     }
