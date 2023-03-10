@@ -1,16 +1,24 @@
 package com.lso.client.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lso.client.Model.Bevanda;
 import com.lso.client.R;
+import com.lso.client.View.Adapter.ConsigliatiAdapter;
+
+import java.util.ArrayList;
 
 public class AcquistaConsigliatiActivity extends AppCompatActivity {
 
@@ -20,6 +28,10 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
 
     private CheckBox checkBox;
     private Spinner spinner;
+
+    private FloatingActionButton carrelloButton;
+
+    private ArrayList<Bevanda> bevandeArrayList;
 
     private String category;
 
@@ -36,9 +48,45 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
         checkBox = findViewById(R.id.checkbox_acquista_consigliati);
         spinner = findViewById(R.id.spinner_acquista_consigliati);
 
+        carrelloButton = findViewById(R.id.carrello_button);
+
         this.category = getIntent().getExtras().getString("category");
 
         categoryText.setText(category);
+
+        bevandeArrayList = new ArrayList<>();
+
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+
+        ConsigliatiAdapter consigliatiAdapter = new ConsigliatiAdapter(this, bevandeArrayList);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(consigliatiAdapter);
 
     }
 
@@ -56,5 +104,11 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    public void cartAnimation(){
+        Animation bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_animation);
+
+        carrelloButton.startAnimation(bounceAnimation);
     }
 }
