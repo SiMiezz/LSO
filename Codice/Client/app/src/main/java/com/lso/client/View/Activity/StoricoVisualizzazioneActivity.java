@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.lso.client.Controller.BevandaController;
 import com.lso.client.Model.Bevanda;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.StoricoAdapter;
@@ -39,7 +40,9 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
         bevandeArrayList = new ArrayList<>();
 
-        // set array list con presenter ( query filtrando cocktail/frullati a seconda del categoryText.getText() )
+        BevandaController bevandaController = new BevandaController();
+
+        //bevandeArrayList = BevandaController.getStoricoByUtenteAndBevandaType(DaPassareConIntent, categoryText);
 
         bevandeArrayList.add(new Bevanda("negroni", 5.99f));
         bevandeArrayList.add(new Bevanda("spritz", 4.99f));

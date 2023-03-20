@@ -10,25 +10,25 @@ import java.util.List;
 
 public class BevandaController {
 
-    List<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, Bevanda_Type bevanda_type){
+    public static List<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, Bevanda_Type bevanda_type){
         List<Bevanda> bevande = new ArrayList<>();
         // to do
         return bevande;
     }
 
-    List<Bevanda> getDisponibiliByBevandaType(Bevanda_Type bevanda_type){
+    public static List<Bevanda> getDisponibiliByBevandaType(Bevanda_Type bevanda_type){
         List<Bevanda> bevande = new ArrayList<>();
         // to do
         return bevande;
     }
 
-    List<Bevanda> getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){
+    public static List<Bevanda> getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){
         List<Bevanda> bevande = new ArrayList<>();
         // to do
         return bevande;
     }
 
-    void acquistaBevanda(Utente utente, Bevanda bevanda){
+    public static void acquistaBevanda(Utente utente, Bevanda bevanda){
 
     }
 

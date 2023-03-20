@@ -43,8 +43,6 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
 
         categoryText.setText(category);
 
-        // set array list con presenter ( query filtrando cocktail/frullati a seconda del categoryText.getText() )
-
         bevandeArrayList = new ArrayList<>();
 
         bevandeArrayList.add(new Bevanda("negroni", 5.99f));

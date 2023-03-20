@@ -8,7 +8,7 @@ import java.util.List;
 
 public class IngredienteController {
 
-    List<Ingrediente> getIngredientiByBevanda(Bevanda bevanda){
+    public static List<Ingrediente> getIngredientiByBevanda(Bevanda bevanda){
         List<Ingrediente> ingredienti = new ArrayList<>();
         // to do
         return ingredienti;
