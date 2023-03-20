@@ -3,37 +3,41 @@
 
 
 //ENUM
-typedef enum tipo_bevanda {cocktail, frullato} tipo_bevanda;
+typedef enum Bevanda_Type {cocktail, frullato} Bevanda_Type;
 
 
 //STRUCTS
-
-//BAR
-typedef struct bar{
+//Bar
+typedef struct Bar{
     char nome[50];
-} bar; 
+} Bar; 
 
-//BEVANDA
-typedef struct bevanda{
+//Bevanda
+typedef struct Bevanda{
     int id;
     char nome[50];
     float prezzo;
-    tipo_bevanda tipo;
+    Bevanda_Type tipo;
     char bar_nome[50];
-} bevanda;
+} Bevanda;
 
-//INGREDIENTE
-typedef struct ingrediente{
+//Ingrediente
+typedef struct Ingrediente{
     char nome[50];
-} ingrediente;
+} Ingrediente;
 
-//UTENTE
-typedef struct utente{
+//Utente
+typedef struct Utente{
     char email[50];
     char password[50];
     char nome[50];
     char cognome[50];
     char bar_nome[50];
-} utente;
+} Utente;
+
+Bar* creaBar(char* nome);
+Bevanda* creaBevanda(int id, char* nome, float prezzo, Bevanda_Type tipo, char* bar_nome);
+Ingrediente* creaIngrediente(char* nome);
+Utente* creaUtente(char* email, char* password, char* nome, char* cognome, char* bar_nome);
 
 #endif
