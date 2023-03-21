@@ -1,6 +1,7 @@
-#include "database.h"
 #include <stdio.h>
 #include <stdbool.h>
+#include "database.h"
+
 
 Utente* getUtenteByEmailAndPassword(char* email, char* password){
     Utente* utente;

@@ -40,4 +40,10 @@ Bevanda* creaBevanda(int id, char* nome, float prezzo, Bevanda_Type tipo, char* 
 Ingrediente* creaIngrediente(char* nome);
 Utente* creaUtente(char* email, char* password, char* nome, char* cognome, char* bar_nome);
 
+char* barToJson(Bar* bar);
+char* bevandaToJson(Bevanda* bevanda);
+char* ingredienteToJson(Ingrediente* ingrediente);
+char* utenteToJson(Utente* utente);
+
+
 #endif

@@ -1,7 +1,7 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include "model.h"
+#include "../Model/model.h"
 #include <stdio.h>
 #include <stdbool.h>
 
