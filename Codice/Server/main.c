@@ -51,9 +51,25 @@ int main(int argc, char* argv[]){
 
 
     // Inizio prova connessione al database e stampa a video dei risultati
-    getUtenteByEmailAndPassword("gi.addati","ok");
-    getDisponibiliByBevandaType(frullato);
+    Utente* u = getUtenteByEmailAndPassword("gi.addati","ok");
+
+    printf("\n");
+
+    Bevanda** b = getDisponibiliByBevandaType(frullato);
+
+    printf("\n");
+
+    acquistaBevanda(u, b[0]);
+
+    printf("\n");
+
+    getStoricoByUtenteAndBevandaType(u, frullato);
+
+    printf("\n");
+
+    getIngredientiByBevanda(b[0]);
     // Fine prova connessione al database e stampa a video dei risultati
+
 
     return 0;   
     
