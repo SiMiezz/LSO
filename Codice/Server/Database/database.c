@@ -126,16 +126,6 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
     mysql_free_result(result);
     mysql_close(conn);
 
-    // Stampa di risultati
-    for(int i = 0; i < num_rows; i++){
-        printf("ID: %d", bevande[i]->id);
-        printf("Nome: %s", bevande[i]->nome);
-        printf("Prezzo: %f", bevande[i]->prezzo);
-        printf("Tipo: %d", bevande[i]->tipo);
-        printf("Bar: %s", bevande[i]->bar_nome);
-        printf("\n");
-    }
-
     return bevande;
 }
 
