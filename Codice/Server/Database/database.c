@@ -6,7 +6,13 @@
 Utente* getUtenteByEmailAndPassword(char* email, char* password){
     Utente* utente;
 
-    // todo
+    // to do
+
+    //QUERY
+    char query[1024];
+    sprintf(query, "SELECT * FROM utente WHERE email = '%s' AND password = '%s'", email, password);
+
+    // to do
 
     return utente;
 }
