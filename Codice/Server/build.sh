@@ -1,6 +1,6 @@
 #! /bin/bash
 
-gcc -o main main.c Database/database.c Model/model.c Utils/utils.c
+gcc -o main main.c Database/database.c Model/model.c Utils/utils.c -I/usr/include/mysql -lmysqlclient
 
 # Aggiungere i file .c da compilare 
 

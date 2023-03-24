@@ -3,12 +3,12 @@
 #include <string.h>
 #include <stdbool.h>
 #include <sys/socket.h>
+#include <sys/types.h>
 #include "Model/model.h"
 #include "Database/database.h"
 
 
 int main(int argc, char* argv[]){
-
 
 
     // Inizio prova creazione oggetti e serializzazione in JSON
@@ -49,6 +49,11 @@ int main(int argc, char* argv[]){
     printf("\n");
     // Fine prova deserializzazione in oggetti e stampa a video
 
+
+    // Inizio prova connessione al database e stampa a video dei risultati
+    getUtenteByEmailAndPassword("gi.addati","ok");
+    getDisponibiliByBevandaType(frullato);
+    // Fine prova connessione al database e stampa a video dei risultati
 
     return 0;   
     
