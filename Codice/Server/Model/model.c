@@ -80,3 +80,201 @@ char* utenteToJson(Utente* utente){
     return result;
 }
 
+Bar* jsonToBar(char* json) {
+    Bar* bar = malloc(sizeof(Bar));
+    if (bar == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        return NULL;
+    }
+    
+    // Creare una copia della stringa json
+    char* jsonCopy = strdup(json);
+    if (jsonCopy == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        free(bar);
+        return NULL;
+    }
+
+    jsonCopy = deleteOccurrences(jsonCopy, '{');
+    jsonCopy = deleteOccurrences(jsonCopy, '}');
+    jsonCopy = deleteOccurrences(jsonCopy, '"');
+
+    char* token = strtok(jsonCopy, ",");
+
+    while (token != NULL) {
+        char* key = strtok(token, ":");
+        char* value = strtok(NULL, ":");
+
+        if (strcmp(key, "nome") == 0) {
+            strcpy(bar->nome, value);
+        }
+        token = strtok(NULL, ",");
+    }
+
+    free(jsonCopy);
+
+    printf("%s\n", bar->nome);
+
+    return bar;
+}
+
+Bevanda* jsonToBevanda(char* json) {
+    Bevanda* bevanda = malloc(sizeof(Bevanda));
+    if (bevanda == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        return NULL;
+    }
+    
+    // Creare una copia della stringa json
+    char* jsonCopy = strdup(json);
+    if (jsonCopy == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        free(bevanda);
+        return NULL;
+    }
+
+    jsonCopy = deleteOccurrences(jsonCopy, '{');
+    jsonCopy = deleteOccurrences(jsonCopy, '}');
+    jsonCopy = deleteOccurrences(jsonCopy, '"');
+    jsonCopy = deleteOccurrences(jsonCopy, ' ');
+
+    char* token = strtok(jsonCopy, ",");
+
+    while (token != NULL) {
+
+        char* tokenCopy = strdup(token);
+
+        //strchr trova prima occorrenza di : in tokencopy e separa le due stringhe 
+        int index = strchr(tokenCopy , ':') - tokenCopy;
+        char* key = substring(tokenCopy, 0, index);
+        char* value = substring(tokenCopy, index + 1, strlen(tokenCopy));
+
+        if (strcmp(key, "id") == 0) {
+            bevanda->id = atoi(value);
+        } else if (strcmp(key, "nome") == 0) {
+            strcpy(bevanda->nome, value);
+        } else if (strcmp(key, "prezzo") == 0) {
+            bevanda->prezzo = atof(value);
+        } else if (strcmp(key, "tipo") == 0) {
+            if(strcmp(value, "cocktail") == 0)
+                bevanda->tipo = 0;
+            else if(strcmp(value, "frullato") == 0)
+                bevanda->tipo = 1;
+        } else if (strcmp(key, "bar_nome") == 0) {
+            strcpy(bevanda->bar_nome, value);
+        }
+        token = strtok(NULL, ",");
+    }
+
+    free(jsonCopy);
+
+    printf("%d\n", bevanda->id);
+    printf("%s\n", bevanda->nome);
+    printf("%f\n", bevanda->prezzo);
+    printf("%d\n", bevanda->tipo);
+    printf("%s\n", bevanda->bar_nome);
+
+    return bevanda;
+}
+
+Ingrediente* jsonToIngrediente(char* json) {
+    Ingrediente* ingrediente = malloc(sizeof(Ingrediente));
+    if (ingrediente == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        return NULL;
+    }
+    
+    // Creare una copia della stringa json
+    char* jsonCopy = strdup(json);
+    if (jsonCopy == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        free(ingrediente);
+        return NULL;
+    }
+
+    jsonCopy = deleteOccurrences(jsonCopy, '{');
+    jsonCopy = deleteOccurrences(jsonCopy, '}');
+    jsonCopy = deleteOccurrences(jsonCopy, '"');
+    jsonCopy = deleteOccurrences(jsonCopy, ' ');
+
+    char* token = strtok(jsonCopy, ",");
+
+    while (token != NULL) {
+        char* key = strtok(token, ":");
+        char* value = strtok(NULL, ":");
+
+        if (strcmp(key, "nome") == 0) {
+            strcpy(ingrediente->nome, value);
+        }
+        token = strtok(NULL, ",");
+    }
+
+    free(jsonCopy);
+
+    printf("%s\n", ingrediente->nome);
+
+    return ingrediente;
+}
+
+Utente* jsonToUtente(char* json){
+    Utente* utente = malloc(sizeof(Utente));
+    if (utente == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        return NULL;
+    }
+    
+    // Creare una copia della stringa json
+    char* jsonCopy = strdup(json);
+    if (jsonCopy == NULL) {
+        printf("Errore: malloc ha restituito un puntatore nullo.\n");
+        free(utente);
+        return NULL;
+    }
+
+    jsonCopy = deleteOccurrences(jsonCopy, '{');
+    jsonCopy = deleteOccurrences(jsonCopy, '}');
+    jsonCopy = deleteOccurrences(jsonCopy, '"');
+    jsonCopy = deleteOccurrences(jsonCopy, ' ');
+
+    char* token = strtok(jsonCopy, ",");
+
+    while (token != NULL) {
+
+        char* tokenCopy = strdup(token);
+
+        int index = strchr(tokenCopy , ':') - tokenCopy;
+        char* key = substring(tokenCopy, 0, index);
+        char* value = substring(tokenCopy, index + 1, strlen(tokenCopy));
+
+        if (strcmp(key, "email") == 0) {
+            strcpy(utente->email, value);
+        } else if (strcmp(key, "password") == 0) {
+            strcpy(utente->password, value);
+        } else if (strcmp(key, "nome") == 0) {
+            strcpy(utente->nome, value);
+        } else if (strcmp(key, "cognome") == 0) {
+            strcpy(utente->cognome, value);
+        } else if (strcmp(key, "bar_nome") == 0) {
+            strcpy(utente->bar_nome, value);
+        }
+        token = strtok(NULL, ",");
+    }
+
+    free(jsonCopy);
+
+    printf("%s\n", utente->email);
+    printf("%s\n", utente->password);
+    printf("%s\n", utente->nome);
+    printf("%s\n", utente->cognome);
+    printf("%s\n", utente->bar_nome);
+
+    return utente;
+}
+
+
+
+
+
+
+
+

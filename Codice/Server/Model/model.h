@@ -1,6 +1,7 @@
 #ifndef MODEL_H
 #define MODEL_H
 
+#include "../Utils/utils.h"
 
 //ENUM
 typedef enum Bevanda_Type {cocktail, frullato} Bevanda_Type;
@@ -44,6 +45,11 @@ char* barToJson(Bar* bar);
 char* bevandaToJson(Bevanda* bevanda);
 char* ingredienteToJson(Ingrediente* ingrediente);
 char* utenteToJson(Utente* utente);
+
+Bar* jsonToBar(char* json);
+Bevanda* jsonToBevanda(char* json);
+Ingrediente* jsonToIngrediente(char* json);
+Utente* jsonToUtente(char* json);
 
 
 #endif
