@@ -8,6 +8,7 @@ typedef enum Bevanda_Type {cocktail, frullato} Bevanda_Type;
 
 
 //STRUCTS
+
 //Bar
 typedef struct Bar{
     char nome[50];
@@ -36,15 +37,18 @@ typedef struct Utente{
     char bar_nome[50];
 } Utente;
 
+
 Bar* creaBar(char* nome);
 Bevanda* creaBevanda(int id, char* nome, float prezzo, Bevanda_Type tipo, char* bar_nome);
 Ingrediente* creaIngrediente(char* nome);
 Utente* creaUtente(char* email, char* password, char* nome, char* cognome, char* bar_nome);
 
+
 char* barToJson(Bar* bar);
 char* bevandaToJson(Bevanda* bevanda);
 char* ingredienteToJson(Ingrediente* ingrediente);
 char* utenteToJson(Utente* utente);
+
 
 Bar* jsonToBar(char* json);
 Bevanda* jsonToBevanda(char* json);

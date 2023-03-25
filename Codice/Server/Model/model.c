@@ -4,6 +4,7 @@
 #include "model.h"
 
 
+
 Bar* creaBar(char* nome){
     Bar* bar = malloc(sizeof(Bar));
     strcpy(bar->nome, nome);
@@ -35,6 +36,8 @@ Utente* creaUtente(char* email, char* password, char* nome, char* cognome, char*
     strcpy(utente->bar_nome, bar_nome);
     return utente;
 }
+
+
 
 char* barToJson(Bar* bar){
 
@@ -79,6 +82,8 @@ char* utenteToJson(Utente* utente){
 
     return result;
 }
+
+
 
 Bar* jsonToBar(char* json) {
     Bar* bar = malloc(sizeof(Bar));

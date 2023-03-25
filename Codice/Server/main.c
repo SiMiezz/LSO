@@ -11,6 +11,7 @@
 int main(int argc, char* argv[]){
 
 
+
     // Inizio prova creazione oggetti e serializzazione in JSON
     Bar* bar = creaBar("barLSO");
     barToJson(bar);
@@ -29,7 +30,17 @@ int main(int argc, char* argv[]){
     printf("\n");
     // Fine prova creazione oggetti e serializzazione in JSON
 
+
+
+
+
+
     printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
+
+
+
+
+
 
     // Inizio prova deserializzazione in oggetti e stampa a video
     char* jsonBar = "{\"nome\":\"barLSO\"}";
@@ -48,6 +59,12 @@ int main(int argc, char* argv[]){
     Utente* utente2 = jsonToUtente(jsonUtente);
     printf("\n");
     // Fine prova deserializzazione in oggetti e stampa a video
+
+
+
+
+
+
 
 
     // Inizio prova connessione al database e stampa a video dei risultati
@@ -69,6 +86,12 @@ int main(int argc, char* argv[]){
 
     getIngredientiByBevanda(b[0]);
     // Fine prova connessione al database e stampa a video dei risultati
+
+
+
+
+
+    
 
 
     return 0;   
