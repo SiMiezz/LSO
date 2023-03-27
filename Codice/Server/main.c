@@ -147,8 +147,11 @@ int main(int argc, char* argv[]){
         char* result = handleRequest(buffer);
 
         // Invia il risultato al client
-        send(new_socket, result, strlen(result), 0);
-        fflush(stdout);
+        if(result != NULL){
+            send(new_socket, result, strlen(result), 0);
+            fflush(stdout);
+        }
+        
 
 
         // Chiudi la socket del client e passa al prossimo ciclo

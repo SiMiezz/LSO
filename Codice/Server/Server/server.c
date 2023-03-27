@@ -21,10 +21,12 @@ char* handleRequest(char* request){
         // Estraggo i due parametri dalla richiesta
         char* email = strtok(path, "$$");
         char* password = path + strlen(email) + 2;
+        char* json = NULL;
 
         // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
         Utente* utente = getUtenteByEmailAndPassword(email, password);
-        char* json = utenteToJson(utente);
+        if(utente != NULL)
+            json = utenteToJson(utente);
         return json;
     } 
     else if(strcmp(method, "getStoricoByUtenteAndBevandaType") == 0){

@@ -21,6 +21,8 @@ public class LoginActivity extends AppCompatActivity {
     private Button accediButton;
     private TextView registratiLink;
 
+    private UtenteController utenteController = new UtenteController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,13 +49,16 @@ public class LoginActivity extends AppCompatActivity {
                 new Thread(()->{
                     String email = usernameText.getText().toString();
                     String password = passwordText.getText().toString();
+                    Utente utente = null;
 
-                    UtenteController utenteController = new UtenteController();
-                    Utente utente = utenteController.getUtenteByEmailAndPassword(email, password);
+                    if(!(email.isEmpty()) && !(password.isEmpty()))
+                        utente = utenteController.getUtenteByEmailAndPassword(email, password);
+
                     if(utente != null){
-
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                         startActivity(intent);
+                    } else {
+                        System.out.println("Utente non trovato");
                     }
                 }).start();
 
