@@ -5,6 +5,7 @@
 #include <sys/socket.h>
 #include <sys/types.h>
 #include <netinet/in.h>
+#include <pthread.h>
 #include "Model/model.h"
 #include "Database/database.h"
 #include "Server/server.h"
@@ -143,17 +144,18 @@ int main(int argc, char* argv[]){
         valread = read(new_socket, buffer, 1024);
         printf("Ricevuto: %s\n", buffer);
 
-        // Elabora la richiesta
-        char* result = handleRequest(buffer);
+        // Elabora la richiesta con un thread dedicato che restituisce il risultato
+        pthread_t thread;
+        char* result = NULL;
+        pthread_create(&thread, NULL, handleRequest, buffer);
+        pthread_join(thread, &result);
 
-        // Invia il risultato al client
+        // Invia il risultato al client 
         if(result != NULL){
             send(new_socket, result, strlen(result), 0);
             fflush(stdout);
         }
         
-
-
         // Chiudi la socket del client e passa al prossimo ciclo
         close(new_socket);
         printf("Connessione chiusa\n");
