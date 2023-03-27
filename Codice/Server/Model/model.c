@@ -43,7 +43,7 @@ char* barToJson(Bar* bar){
 
     char* result = malloc(64 * sizeof(char));
 
-    sprintf(result, "{\"nome\":%s}", bar->nome);
+    sprintf(result, "{\"nome\":\"%s\"}", bar->nome);
 
     printf("%s\n", result);
 
@@ -54,7 +54,7 @@ char* bevandaToJson(Bevanda* bevanda){
     
     char* result = malloc(256 * sizeof(char));
 
-    sprintf(result, "{\"id\":%d, \"nome\":%s, \"prezzo\":%f, \"tipo\":%d, \"bar_nome\":%s}", bevanda->id, bevanda->nome, bevanda->prezzo, bevanda->tipo, bevanda->bar_nome);
+    sprintf(result, "{\"id\":%d, \"nome\":\"%s\", \"prezzo\":%f, \"tipo\":%d, \"bar_nome\":\"%s\"}", bevanda->id, bevanda->nome, bevanda->prezzo, bevanda->tipo, bevanda->bar_nome);
 
     printf("%s\n", result);
 
@@ -65,7 +65,7 @@ char* ingredienteToJson(Ingrediente* ingrediente){
     
     char* result = malloc(64 * sizeof(char));
 
-    sprintf(result, "{\"nome\":%s}", ingrediente->nome);
+    sprintf(result, "{\"nome\":\"%s\"}", ingrediente->nome);
 
     printf("%s\n", result);
 
@@ -76,7 +76,7 @@ char* utenteToJson(Utente* utente){
         
     char* result = malloc(512 * sizeof(char));
 
-    sprintf(result, "{\"email\":%s, \"password\":%s, \"nome\":%s, \"cognome\":%s, \"bar_nome\":%s}", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
+    sprintf(result, "{\"email\":\"%s\", \"password\":\"%s\", \"nome\":\"%s\", \"cognome\":\"%s\", \"bar_nome\":\"%s\"}", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
 
     printf("%s\n", result);
 

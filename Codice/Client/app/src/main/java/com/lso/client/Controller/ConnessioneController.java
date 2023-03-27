@@ -14,7 +14,7 @@ public class ConnessioneController {
     private BufferedReader input;
     private PrintWriter output;
 
-    private final String serverName = "192.168.1.248";
+    private final String serverName = "192.168.10.118";
     private final int serverPort = 1926;
 
 
@@ -25,10 +25,13 @@ public class ConnessioneController {
 
     public void startConnection(){
         try{
+            System.out.println("inizio");
             socket = new Socket(serverName, serverPort);
-            socket = new Socket(serverName, serverPort);
+            System.out.println("inizio2");
             input = new BufferedReader(new InputStreamReader( socket.getInputStream()));
+            System.out.println("inizio3");
             output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+            System.out.println("fine start");
         } catch (IOException e){
             e.printStackTrace();
         }

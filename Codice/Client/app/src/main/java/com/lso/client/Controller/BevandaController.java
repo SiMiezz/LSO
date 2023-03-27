@@ -51,7 +51,7 @@ public class BevandaController {
     }
 
     public Bevanda jsonToBevanda(String json){
-        Bevanda bevanda = modelMapper.map(json, Bevanda.class);
+        Bevanda bevanda = gson.fromJson(json, Bevanda.class);
         return bevanda;
     }
 

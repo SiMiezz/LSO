@@ -32,14 +32,14 @@ public class UtenteController {
         System.out.println("dopo connessione");
 
         //richiesta
-        connessioneController.writeOnOutput("getUtenteByEmailAndPassword");
-        connessioneController.writeOnOutput(email);
-        connessioneController.writeOnOutput(password);
+        connessioneController.writeOnOutput("getUtenteByEmailAndPassword$$"+email+"$$"+password);
 
         System.out.println("dopo scrittura");
 
         //ricezione
         result = connessioneController.readFromInput();
+
+        System.out.println(result);
 
         System.out.println("dopo lettura");
 
@@ -62,7 +62,7 @@ public class UtenteController {
     }
 
     public Utente jsonToUtente(String json){
-        Utente utente = modelMapper.map(json, Utente.class);
+        Utente utente = gson.fromJson(json, Utente.class);
         return utente;
     }
 

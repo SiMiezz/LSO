@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.lso.client.Controller.UtenteController;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 
 public class LoginActivity extends AppCompatActivity {
@@ -41,8 +43,20 @@ public class LoginActivity extends AppCompatActivity {
         accediButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
-                startActivity(intent);
+
+                new Thread(()->{
+                    String email = usernameText.getText().toString();
+                    String password = passwordText.getText().toString();
+
+                    UtenteController utenteController = new UtenteController();
+                    Utente utente = utenteController.getUtenteByEmailAndPassword(email, password);
+                    if(utente != null){
+
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        startActivity(intent);
+                    }
+                }).start();
+
             }
         });
 

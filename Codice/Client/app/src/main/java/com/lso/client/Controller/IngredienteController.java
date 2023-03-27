@@ -34,7 +34,7 @@ public class IngredienteController {
     }
 
     public Ingrediente jsonToIngrediente(String json){
-        Ingrediente ingrediente = modelMapper.map(json, Ingrediente.class);
+        Ingrediente ingrediente = gson.fromJson(json, Ingrediente.class);
         return ingrediente;
     }
 

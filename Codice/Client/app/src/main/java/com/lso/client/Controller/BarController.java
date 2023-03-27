@@ -24,7 +24,7 @@ public class BarController {
     }
 
     public Bar jsonToBar(String json){
-        Bar bar = modelMapper.map(json, Bar.class);
+        Bar bar = gson.fromJson(json, Bar.class);
         return bar;
     }
 }
