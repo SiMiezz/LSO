@@ -13,84 +13,6 @@
 
 int main(int argc, char* argv[]){
 
-
-
-    // // Inizio prova creazione oggetti e serializzazione in JSON
-    // Bar* bar = creaBar("barLSO");
-    // barToJson(bar);
-    // printf("\n");
-
-    // Bevanda* bevanda = creaBevanda(1, "Gin Tonic", 1.0, cocktail, "barLSO");
-    // bevandaToJson(bevanda);
-    // printf("\n");
-
-    // Ingrediente* ingrediente = creaIngrediente("Gin");
-    // ingredienteToJson(ingrediente);
-    // printf("\n");
-
-    // Utente* utente = creaUtente("gianm@cacca.it", "caccamiao", "Gian Marco", "Addati", "barLSO");
-    // utenteToJson(utente);
-    // printf("\n");
-    // // Fine prova creazione oggetti e serializzazione in JSON
-
-
-
-
-
-
-    // printf("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\n\n");
-
-
-
-
-
-
-    // // Inizio prova deserializzazione in oggetti e stampa a video
-    // char* jsonBar = "{\"nome\":\"barLSO\"}";
-    // Bar* bar2 = jsonToBar(jsonBar);
-    // printf("\n");
-
-    // char* jsonBevanda = "{\"id\":1, \"nome\":\"Gin Tonic\", \"prezzo\":7, \"tipo\":cocktail, \"bar_nome\":\"barLSO\"}";
-    // Bevanda* bevanda2 = jsonToBevanda(jsonBevanda);
-    // printf("\n");
-
-    // char* jsonIngrediente = "{\"nome\":\"Gin\"}";
-    // Ingrediente* ingrediente2 = jsonToIngrediente(jsonIngrediente);
-    // printf("\n");
-
-    // char* jsonUtente = "{\"email\":\"gianm@cacca.it\", \"password\":\"caccamiao\", \"nome\":\"Gian Marco\", \"cognome\":\"Addati\", \"bar_nome\":\"barLSO\"}";
-    // Utente* utente2 = jsonToUtente(jsonUtente);
-    // printf("\n");
-    // // Fine prova deserializzazione in oggetti e stampa a video
-
-
-
-
-
-
-
-
-    // // Inizio prova connessione al database e stampa a video dei risultati
-    // Utente* u = getUtenteByEmailAndPassword("gi.addati","ok");
-
-    // printf("\n");
-
-    // Bevanda** b = getDisponibiliByBevandaType(frullato);
-
-    // printf("\n");
-
-    // acquistaBevanda(u, b[0]);
-
-    // printf("\n");
-
-    // getStoricoByUtenteAndBevandaType(u, frullato);
-
-    // printf("\n");
-
-    // getIngredientiByBevanda(b[0]);
-    // // Fine prova connessione al database e stampa a video dei risultati
-
-
     // Socket
     int server_fd, new_socket, valread;
     struct sockaddr_in address;
@@ -132,6 +54,7 @@ int main(int argc, char* argv[]){
         printf("In ascolto sulla porta 1926\n");
     }
 
+    // Ciclo infinito per gestire le connessioni in ingresso 
     while (1) {
         sleep(1);
         printf("In attesa di una connessione...\n");
@@ -151,12 +74,9 @@ int main(int argc, char* argv[]){
         pthread_t thread;
         int* arg = malloc(sizeof(int));
         *arg = new_socket;
-        pthread_create(&thread, NULL, threadManagement, arg);
+        pthread_create(&thread, NULL, creazioneThread, arg);
         pthread_detach(thread);
     }
-
-
-
 
     return 0;   
     

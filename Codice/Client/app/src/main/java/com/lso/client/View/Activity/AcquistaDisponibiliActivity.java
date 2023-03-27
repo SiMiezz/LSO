@@ -33,6 +33,8 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
 
     private BevandaController bevandaController = new BevandaController();
 
+    private DisponibiliAdapter disponibiliAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,43 +49,27 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
 
         categoryText.setText(category);
 
+        if(categoryText.getText().equals("Cocktail"))
+            category = "cocktail";
+        else if(categoryText.getText().equals("Frullati"))
+            category = "frullato";
+
         bevandeArrayList = new ArrayList<>();
-//
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
 
         new Thread(()->{
-            bevandaController.getDisponibiliByBevandaType(Bevanda_Type.cocktail);
+            bevandeArrayList = bevandaController.getDisponibiliByBevandaType(Bevanda_Type.valueOf(category));
+            disponibiliAdapter = new DisponibiliAdapter(this, bevandeArrayList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+
+            runOnUiThread(()->{
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(disponibiliAdapter);
+            });
+
+
         }).start();
 
-        DisponibiliAdapter disponibiliAdapter = new DisponibiliAdapter(this, bevandeArrayList);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(disponibiliAdapter);
 
 
     }

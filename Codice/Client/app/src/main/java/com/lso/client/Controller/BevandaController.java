@@ -31,19 +31,19 @@ public class BevandaController {
 
     public ArrayList<Bevanda> getDisponibiliByBevandaType(Bevanda_Type bevanda_type){
 
-
-
-        ArrayList<Bevanda> bevande = null;
+        ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = null;
 
         connessioneController.startConnection();
 
         connessioneController.writeOnOutput("getDisponibiliByBevandaType$$"+bevanda_type.toString());
 
+        // Recupero la stringa contenente più JSON {json1}{json2}{...}
         result = connessioneController.readFromInput();
 
         System.out.println(result);
 
+        // Separo i JSON e creo un array che riverserò nell'arraylist
         if(result != null){
             result = result.replaceAll("\\}\\s*\\{", "},{");
 
@@ -53,7 +53,7 @@ public class BevandaController {
 
             // Fai qualcosa con l'array di oggetti Bevanda
             for (Bevanda bevanda : bevandeArray)
-                System.out.println(bevanda.getNome());
+                bevande.add(bevanda);
         }
 
 

@@ -3,7 +3,42 @@
 #include <stdlib.h>
 #include <string.h>
 
-char* handleRequest(char* request){
+void* creazioneThread(void* arg){
+    int new_socket = *((int*) arg);
+    char buffer[1024] = {0};
+    int valread = read(new_socket, buffer, 1024);
+    buffer[valread] = '\0';
+    char* request = buffer;
+
+    fflush(stdout);
+    printf("Ricevuto: %s\n", buffer);
+
+    // Elabora la richiesta e restituisci il risultato
+    fflush(stdout);
+    printf("Elaborazione richiesta...\n");
+
+    char* result = estraiRichiesta(request);
+    if(result != NULL){
+        fflush(stdout);
+        printf("Risultato: %s\n", result);
+    }
+
+    // Invia il risultato al client 
+    if(result != NULL){
+        fflush(stdout);
+        send(new_socket, result, strlen(result), 0);
+    }
+
+    // Chiudi la connessione
+    bzero(buffer, 1024);
+    close(new_socket);
+    fflush(stdout);
+    printf("Connessione chiusa\n");
+
+    pthread_exit(NULL);
+}
+
+char* estraiRichiesta(char* request){
 
     // Rimuovo il carattere di fine stringa
     request[strlen(request) - 1] = '\0';
@@ -19,6 +54,11 @@ char* handleRequest(char* request){
     printf("Metodo: %s\n", method);
     printf("Path: %s\n", path);
 
+    return discriminaRichiesta(method, path);
+
+}
+
+char* discriminaRichiesta(char* method, char* path){
     // Discrimina la richiesta in base al metodo
     if(strcmp(method, "getUtenteByEmailAndPassword") == 0){
         // Estraggo i due parametri dalla richiesta
@@ -79,41 +119,4 @@ char* handleRequest(char* request){
     else {
         return "Metodo non supportato";
     }
-
-}
-
-
-void* threadManagement(void* arg){
-    int new_socket = *((int*) arg);
-    char buffer[1024] = {0};
-    int valread = read(new_socket, buffer, 1024);
-    buffer[valread] = '\0';
-    char* request = buffer;
-
-    fflush(stdout);
-    printf("Ricevuto: %s\n", buffer);
-
-    // Elabora la richiesta e restituisci il risultato
-    fflush(stdout);
-    printf("Elaborazione richiesta...\n");
-
-    char* result = handleRequest(request);
-    if(result != NULL){
-        fflush(stdout);
-        printf("Risultato: %s\n", result);
-    }
-
-    // Invia il risultato al client 
-    if(result != NULL){
-        fflush(stdout);
-        send(new_socket, result, strlen(result), 0);
-    }
-
-    // Chiudi la connessione
-    bzero(buffer, 1024);
-    close(new_socket);
-    fflush(stdout);
-    printf("Connessione chiusa\n");
-
-    pthread_exit(NULL);
 }

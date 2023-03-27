@@ -3,7 +3,8 @@
 
 #include "../Database/database.h"
 
-char* handleRequest(char* request);
-void* threadManagement(void* arg);
+void* creazioneThread(void* arg);
+char* estraiRichiesta(char* request);
+char* discriminaRichiesta(char* method, char* path);
 
 #endif
