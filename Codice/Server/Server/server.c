@@ -16,6 +16,9 @@ char* handleRequest(char* request){
     char* method = strtok(requestCopy, "$$");
     char* path = request + strlen(method) + 2;
 
+    printf("Metodo: %s\n", method);
+    printf("Path: %s\n", path);
+
     // Discrimina la richiesta in base al metodo
     if(strcmp(method, "getUtenteByEmailAndPassword") == 0){
         // Estraggo i due parametri dalla richiesta
@@ -33,7 +36,10 @@ char* handleRequest(char* request){
         
     } 
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
-        
+        printf("muiao\n");
+        // Estraggo il parametro dalla richiesta
+        printf("path: %s\n", path);
+        return path;
     }
     else if(strcmp(method, "getDisponibiliByBevandaType") == 0){
         

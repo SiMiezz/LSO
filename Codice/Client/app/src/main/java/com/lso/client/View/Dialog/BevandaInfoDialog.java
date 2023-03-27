@@ -11,6 +11,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.lso.client.Controller.IngredienteController;
 import com.lso.client.Model.Bevanda;
 import com.lso.client.Model.Ingrediente;
 import com.lso.client.R;
@@ -25,6 +26,8 @@ public class BevandaInfoDialog extends Dialog {
     private RecyclerView recyclerView;
 
     private Bevanda bevandaSelezionata;
+
+    private IngredienteController ingredienteController = new IngredienteController();
 
     public BevandaInfoDialog(@NonNull Context context, Bevanda bevandaSelezionata) {
         super(context);
@@ -42,26 +45,28 @@ public class BevandaInfoDialog extends Dialog {
 
         // query ingredienti di getBevandaSelezionata() (settata tramite costruttore)
 
-        ArrayList<Ingrediente> ingredienteArrayList = new ArrayList<>();
-        ingredienteArrayList.add(new Ingrediente("gin"));
-        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-        ingredienteArrayList.add(new Ingrediente("lime"));
-        ingredienteArrayList.add(new Ingrediente("gin"));
-        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-        ingredienteArrayList.add(new Ingrediente("lime"));
-        ingredienteArrayList.add(new Ingrediente("gin"));
-        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-        ingredienteArrayList.add(new Ingrediente("lime"));
+        new Thread(()->{
+            ArrayList<Ingrediente> ingredienteArrayList = ingredienteController.getIngredientiByBevanda(getBevandaSelezionata());
+        }).start();
+//        ingredienteArrayList.add(new Ingrediente("gin"));
+//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+//        ingredienteArrayList.add(new Ingrediente("lime"));
+//        ingredienteArrayList.add(new Ingrediente("gin"));
+//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+//        ingredienteArrayList.add(new Ingrediente("lime"));
+//        ingredienteArrayList.add(new Ingrediente("gin"));
+//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+//        ingredienteArrayList.add(new Ingrediente("lime"));
 
-        IngredientiDialogAdapter ingredientiDialogAdapter = new IngredientiDialogAdapter(getContext(), ingredienteArrayList);
-
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(ingredientiDialogAdapter);
+//        IngredientiDialogAdapter ingredientiDialogAdapter = new IngredientiDialogAdapter(getContext(), ingredienteArrayList);
+//
+//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        recyclerView.setLayoutManager(linearLayoutManager);
+//        recyclerView.setAdapter(ingredientiDialogAdapter);
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override

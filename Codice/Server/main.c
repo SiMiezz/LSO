@@ -132,6 +132,10 @@ int main(int argc, char* argv[]){
     }
 
     while (1) {
+        printf("In attesa di una connessione...\n");
+
+        bzero(&address, sizeof(address));
+
         // Accetta una connessione in ingresso dalla socket del server
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
             perror("accept failed");
@@ -140,7 +144,8 @@ int main(int argc, char* argv[]){
             printf("Connessione accettata\n");
         }
 
-        // Leggi la richiesta dal client e invia il risultato (la richiesta può superare la dimensione del buffer)
+        // Leggi la richiesta dal client e invia il risultato 
+        fflush(stdout);
         valread = read(new_socket, buffer, 1024);
         printf("Ricevuto: %s\n", buffer);
 
@@ -152,11 +157,12 @@ int main(int argc, char* argv[]){
 
         // Invia il risultato al client 
         if(result != NULL){
-            send(new_socket, result, strlen(result), 0);
             fflush(stdout);
+            send(new_socket, result, strlen(result), 0);
         }
         
-        // Chiudi la socket del client e passa al prossimo ciclo
+        // Chiudi la connessione
+        bzero(buffer, 1024);
         close(new_socket);
         printf("Connessione chiusa\n");
     }

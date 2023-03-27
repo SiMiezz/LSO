@@ -22,9 +22,22 @@ public class IngredienteController {
         gson = new Gson();
     }
 
-    public List<Ingrediente> getIngredientiByBevanda(Bevanda bevanda){
-        List<Ingrediente> ingredienti = new ArrayList<>();
-        // to do
+    public ArrayList<Ingrediente> getIngredientiByBevanda(Bevanda bevanda){
+        ArrayList<Ingrediente> ingredienti = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        //richiesta
+        connessioneController.writeOnOutput("getIngredientiByBevanda$$"+bevanda.getNome());
+
+        //ricezione
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+        //conversione
+
+
         return ingredienti;
     }
 
