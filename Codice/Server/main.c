@@ -134,12 +134,10 @@ int main(int argc, char* argv[]){
 
     while (1) {
         sleep(1);
-        bzero(buffer, 1024);
         printf("In attesa di una connessione...\n");
 
         bzero(&address, sizeof(address));
-        bzero(&addrlen, sizeof(addrlen));
-        bzero(&new_socket, sizeof(new_socket));
+        bzero(buffer, 1024);
 
         // Accetta una connessione in ingresso dalla socket del server
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
@@ -154,7 +152,6 @@ int main(int argc, char* argv[]){
         int* arg = malloc(sizeof(int));
         *arg = new_socket;
         pthread_create(&thread, NULL, threadManagement, arg);
-        pthread_join(thread, NULL);
     }
 
 

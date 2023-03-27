@@ -29,10 +29,40 @@ public class BevandaController {
         return bevande;
     }
 
-    public List<Bevanda> getDisponibiliByBevandaType(Bevanda_Type bevanda_type){
-        List<Bevanda> bevande = new ArrayList<>();
-        // to do
+    public ArrayList<Bevanda> getDisponibiliByBevandaType(Bevanda_Type bevanda_type){
+
+
+
+        ArrayList<Bevanda> bevande = null;
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getDisponibiliByBevandaType$$"+bevanda_type.toString());
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                System.out.println(bevanda.getNome());
+        }
+
+
+        // conversione
+
+        connessioneController.closeConnection();
+
         return bevande;
+
     }
 
     public List<Bevanda> getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){

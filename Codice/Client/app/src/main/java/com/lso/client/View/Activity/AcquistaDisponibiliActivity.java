@@ -12,7 +12,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lso.client.Controller.BevandaController;
 import com.lso.client.Model.Bevanda;
+import com.lso.client.Model.Enum.Bevanda_Type;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.DisponibiliAdapter;
 
@@ -29,6 +31,8 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
     private String category;
     private ArrayList<Bevanda> bevandeArrayList;
 
+    private BevandaController bevandaController = new BevandaController();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,32 +48,35 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
         categoryText.setText(category);
 
         bevandeArrayList = new ArrayList<>();
+//
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+//        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
+//        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
+//        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
+//        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
 
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-
+        new Thread(()->{
+            bevandaController.getDisponibiliByBevandaType(Bevanda_Type.cocktail);
+        }).start();
 
         DisponibiliAdapter disponibiliAdapter = new DisponibiliAdapter(this, bevandeArrayList);
 

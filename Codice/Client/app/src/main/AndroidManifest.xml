@@ -17,14 +17,16 @@
         tools:targetApi="31">
         <activity
             android:name=".View.Activity.AcquistaConsigliatiActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.Activity.AcquistaDisponibiliActivity"
-            android:exported="false">
+            android:exported="false"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />

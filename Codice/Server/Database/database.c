@@ -103,7 +103,10 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
     }
 
     printf("Bevande trovate\n");
-    bevande = malloc(num_rows * sizeof(Bevanda*));
+    bevande = malloc((num_rows + 1) * sizeof(Bevanda*));
+
+    // Setto l'ultimo elemento a NULL (nodo sentinella)
+    bevande[num_rows] = NULL;
 
     // Ciclo sui risultati e stampa dei valori delle colonne
     int i = 0;
@@ -168,7 +171,10 @@ Ingrediente** getIngredientiByBevanda(Bevanda* bevanda){
     }
 
     printf("Ingredienti trovati\n");
-    ingredienti = malloc(num_rows * sizeof(Ingrediente*));
+    ingredienti = malloc((num_rows + 1) * sizeof(Ingrediente*));
+
+    // Setto l'ultimo elemento a NULL (nodo sentinella)
+    ingredienti[num_rows] = NULL;
 
     // Ciclo sui risultati e stampa dei valori delle colonne
     int i = 0;
@@ -208,6 +214,7 @@ Bevanda** getDisponibiliByBevandaType(Bevanda_Type tipo){
     // Creazione Query
     char query[1024];
     sprintf(query, "SELECT * FROM bevanda WHERE tipo = %d", tipo);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -230,7 +237,10 @@ Bevanda** getDisponibiliByBevandaType(Bevanda_Type tipo){
     }
 
     printf("Bevande trovate\n");
-    bevande = malloc(num_rows * sizeof(Bevanda*));
+    bevande = malloc((num_rows + 1) * sizeof(Bevanda*));
+
+    // Setto l'ultimo elemento a NULL (nodo sentinella)
+    bevande[num_rows] = NULL;
 
     // Ciclo sui risultati e stampa dei valori delle colonne
     int i = 0;

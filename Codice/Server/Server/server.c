@@ -5,8 +5,6 @@
 
 char* handleRequest(char* request){
 
-    printf("dentro handleRequest\n");
-
     // Rimuovo il carattere di fine stringa
     request[strlen(request) - 1] = '\0';
 
@@ -38,11 +36,39 @@ char* handleRequest(char* request){
         
     } 
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
-        printf("dentro getIngredientiByBevanda\n");
-        return NULL;
+        
     }
     else if(strcmp(method, "getDisponibiliByBevandaType") == 0){
+        // Estraggo il parametro dalla richiesta
+        char* bevandaType = path;
+        char* json = NULL;
+
+        printf("BevandaType: %s\n", bevandaType);
+
+        // Converto la stringa in un bevandatype e la passo alla funzione
+        Bevanda_Type tipo;
+        if(strcmp(bevandaType, "cocktail") == 0)
+            tipo = 0;
+        else if(strcmp(bevandaType, "frullato") == 0)
+            tipo = 1;
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Bevanda** bevande = getDisponibiliByBevandaType(tipo);
+
+        // Per ogni bevanda, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; bevande[i] != NULL; i++){
+            char* jsonBevanda = bevandaToJson(bevande[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonBevanda) + 1);
+                strcpy(json, jsonBevanda);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonBevanda) + 1);
+                strcat(json, jsonBevanda);
+            }
+        }
         
+        return json;
     }
     else if(strcmp(method, "getConsigliatiByBevandaTypeAndRecentiAndIngredienti") == 0){
         

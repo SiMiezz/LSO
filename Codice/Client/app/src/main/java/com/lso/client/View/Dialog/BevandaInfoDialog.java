@@ -44,29 +44,28 @@ public class BevandaInfoDialog extends Dialog {
         recyclerView = findViewById(R.id.lista_ingredienti_dialog_recyclerview);
 
         // query ingredienti di getBevandaSelezionata() (settata tramite costruttore)
+//        ArrayList<Ingrediente> ingredienteArrayList = ingredienteController.getIngredientiByBevanda(getBevandaSelezionata());
 
-        new Thread(()->{
-            ArrayList<Ingrediente> ingredienteArrayList = ingredienteController.getIngredientiByBevanda(getBevandaSelezionata());
-        }).start();
-//        ingredienteArrayList.add(new Ingrediente("gin"));
-//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-//        ingredienteArrayList.add(new Ingrediente("lime"));
-//        ingredienteArrayList.add(new Ingrediente("gin"));
-//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-//        ingredienteArrayList.add(new Ingrediente("lime"));
-//        ingredienteArrayList.add(new Ingrediente("gin"));
-//        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
-//        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
-//        ingredienteArrayList.add(new Ingrediente("lime"));
+        ArrayList<Ingrediente> ingredienteArrayList = new ArrayList<>();
+        ingredienteArrayList.add(new Ingrediente("gin"));
+        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+        ingredienteArrayList.add(new Ingrediente("lime"));
+        ingredienteArrayList.add(new Ingrediente("gin"));
+        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+        ingredienteArrayList.add(new Ingrediente("lime"));
+        ingredienteArrayList.add(new Ingrediente("gin"));
+        ingredienteArrayList.add(new Ingrediente("acqua tonica"));
+        ingredienteArrayList.add(new Ingrediente("ghiaccio"));
+        ingredienteArrayList.add(new Ingrediente("lime"));
 
-//        IngredientiDialogAdapter ingredientiDialogAdapter = new IngredientiDialogAdapter(getContext(), ingredienteArrayList);
-//
-//        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-//        recyclerView.setLayoutManager(linearLayoutManager);
-//        recyclerView.setAdapter(ingredientiDialogAdapter);
+        IngredientiDialogAdapter ingredientiDialogAdapter = new IngredientiDialogAdapter(getContext(), ingredienteArrayList);
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        recyclerView.setLayoutManager(linearLayoutManager);
+        recyclerView.setAdapter(ingredientiDialogAdapter);
 
         okButton.setOnClickListener(new View.OnClickListener() {
             @Override
