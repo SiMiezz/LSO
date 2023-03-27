@@ -152,6 +152,7 @@ int main(int argc, char* argv[]){
         int* arg = malloc(sizeof(int));
         *arg = new_socket;
         pthread_create(&thread, NULL, threadManagement, arg);
+        pthread_detach(thread);
     }
 
 
