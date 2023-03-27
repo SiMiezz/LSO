@@ -5,6 +5,8 @@
 
 char* handleRequest(char* request){
 
+    printf("dentro handleRequest\n");
+
     // Rimuovo il carattere di fine stringa
     request[strlen(request) - 1] = '\0';
 
@@ -36,10 +38,8 @@ char* handleRequest(char* request){
         
     } 
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
-        printf("muiao\n");
-        // Estraggo il parametro dalla richiesta
-        printf("path: %s\n", path);
-        return path;
+        printf("dentro getIngredientiByBevanda\n");
+        return NULL;
     }
     else if(strcmp(method, "getDisponibiliByBevandaType") == 0){
         
@@ -54,4 +54,40 @@ char* handleRequest(char* request){
         return "Metodo non supportato";
     }
 
+}
+
+
+void* threadManagement(void* arg){
+    int new_socket = *((int*) arg);
+    char buffer[1024] = {0};
+    int valread = read(new_socket, buffer, 1024);
+    buffer[valread] = '\0';
+    char* request = buffer;
+
+    fflush(stdout);
+    printf("Ricevuto: %s\n", buffer);
+
+    // Elabora la richiesta e restituisci il risultato
+    fflush(stdout);
+    printf("Elaborazione richiesta...\n");
+
+    char* result = handleRequest(request);
+    if(result != NULL){
+        fflush(stdout);
+        printf("Risultato: %s\n", result);
+    }
+
+    // Invia il risultato al client 
+    if(result != NULL){
+        fflush(stdout);
+        send(new_socket, result, strlen(result), 0);
+    }
+
+    // Chiudi la connessione
+    bzero(buffer, 1024);
+    close(new_socket);
+    fflush(stdout);
+    printf("Connessione chiusa\n");
+
+    pthread_exit(NULL);
 }

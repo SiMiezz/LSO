@@ -4,5 +4,6 @@
 #include "../Database/database.h"
 
 char* handleRequest(char* request);
+void* threadManagement(void* arg);
 
 #endif

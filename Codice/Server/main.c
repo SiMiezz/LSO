@@ -120,6 +120,7 @@ int main(int argc, char* argv[]){
         perror("bind failed");
         exit(EXIT_FAILURE);
     } else {
+        fflush(stdout);
         printf("Collegata alla porta 1926\n");
     }
 
@@ -132,9 +133,12 @@ int main(int argc, char* argv[]){
     }
 
     while (1) {
+        bzero(buffer, 1024);
         printf("In attesa di una connessione...\n");
 
         bzero(&address, sizeof(address));
+        bzero(&addrlen, sizeof(addrlen));
+        bzero(&new_socket, sizeof(new_socket));
 
         // Accetta una connessione in ingresso dalla socket del server
         if ((new_socket = accept(server_fd, (struct sockaddr *)&address, (socklen_t*)&addrlen)) < 0) {
@@ -144,27 +148,12 @@ int main(int argc, char* argv[]){
             printf("Connessione accettata\n");
         }
 
-        // Leggi la richiesta dal client e invia il risultato 
-        fflush(stdout);
-        valread = read(new_socket, buffer, 1024);
-        printf("Ricevuto: %s\n", buffer);
-
-        // Elabora la richiesta con un thread dedicato che restituisce il risultato
+        // Crea un thread per gestire la richiesta del client
         pthread_t thread;
-        char* result = NULL;
-        pthread_create(&thread, NULL, handleRequest, buffer);
-        pthread_join(thread, &result);
-
-        // Invia il risultato al client 
-        if(result != NULL){
-            fflush(stdout);
-            send(new_socket, result, strlen(result), 0);
-        }
-        
-        // Chiudi la connessione
-        bzero(buffer, 1024);
-        close(new_socket);
-        printf("Connessione chiusa\n");
+        int* arg = malloc(sizeof(int));
+        *arg = new_socket;
+        pthread_create(&thread, NULL, threadManagement, arg);
+        pthread_join(thread, NULL);
     }
 
 
