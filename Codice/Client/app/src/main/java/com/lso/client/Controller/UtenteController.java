@@ -20,6 +20,27 @@ public class UtenteController {
         gson = new Gson();
     }
 
+    public Utente getUtenteByEmail(String email){
+
+        Utente utente = null;
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getUtenteByEmail$$"+email);
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        utente = jsonToUtente(result);
+
+        connessioneController.closeConnection();
+
+        return utente;
+
+    }
+
     public Utente getUtenteByEmailAndPassword(String email, String password){
 
         System.out.println("inizio metodo");

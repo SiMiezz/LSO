@@ -5,6 +5,64 @@
 #include <string.h>
 #include <mysql/mysql.h>
 
+Utente* getUtenteByEmail(char* email){
+
+    Utente* utente;
+
+    MYSQL *conn;
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[1024];
+    sprintf(query, "SELECT * FROM utente WHERE email = '%s'", email);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Ottenimento dei risultati della query
+    result = mysql_store_result(conn);
+
+    //Controllo se l'utente esiste
+    if(mysql_num_rows(result) == 0){
+        printf("Utente non trovato\n");
+        mysql_free_result(result);
+        mysql_close(conn);
+        return NULL;
+    }
+
+    utente = malloc(sizeof(Utente));
+    printf("Utente trovato\n");
+
+    // Ciclo sui risultati e stampa dei valori delle colonne
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        strcpy(utente->email, row[0]);
+        strcpy(utente->password, row[1]);
+        strcpy(utente->nome, row[2]);
+        strcpy(utente->cognome, row[3]);
+        strcpy(utente->bar_nome, row[4]);
+    }
+
+    // Liberazione della memoria
+    mysql_free_result(result);
+    mysql_close(conn);
+
+    return utente;
+
+
+
+}
+
 Utente* getUtenteByEmailAndPassword(char* email, char* password){
 
     Utente* utente;
@@ -301,7 +359,6 @@ void acquistaBevanda(Utente* utente, Bevanda* bevanda){
 
     printf("Bevanda acquistata\n");
 }
-
 
 void registraUtente(Utente* utente){
 

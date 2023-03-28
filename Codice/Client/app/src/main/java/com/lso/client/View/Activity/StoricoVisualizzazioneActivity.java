@@ -10,7 +10,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.lso.client.Controller.BevandaController;
+import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Bevanda;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.StoricoAdapter;
 
@@ -25,12 +27,22 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
     private String category;
     private ArrayList<Bevanda> bevandeArrayList;
 
+    private UtenteController utenteController = new UtenteController();
+
+    private String emailCorrente;
+    private Utente utenteCorrente;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storico_visualizzazione);
 
-        this.category = getIntent().getExtras().getString("category");
+        category = getIntent().getExtras().getString("category");
+
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+        }).start();
 
         backButton = findViewById(R.id.back_button_storico_visualizzazione);
         recyclerView = findViewById(R.id.storico_recyclerview);

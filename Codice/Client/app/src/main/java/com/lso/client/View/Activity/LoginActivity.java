@@ -56,6 +56,7 @@ public class LoginActivity extends AppCompatActivity {
 
                     if(utente != null){
                         Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        intent.putExtra("utenteEmail", utente.getEmail());
                         startActivity(intent);
                     } else {
                         System.out.println("Utente non trovato");

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.card.MaterialCardView;
+import com.lso.client.Controller.UtenteController;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 
 public class StoricoActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class StoricoActivity extends AppCompatActivity {
     private ImageButton backButton;
     private MaterialCardView cocktailButton;
     private MaterialCardView frullatiButton;
+
+    private UtenteController utenteController = new UtenteController();
+
+    private String emailCorrente;
+    private Utente utenteCorrente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,11 @@ public class StoricoActivity extends AppCompatActivity {
         backButton = findViewById(R.id.back_button_storico);
         cocktailButton = findViewById(R.id.cocktail_button_storico);
         frullatiButton = findViewById(R.id.frullati_button_storico);
+
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+        }).start();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,6 +50,7 @@ public class StoricoActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
                 String category = "Cocktail";
                 intent.putExtra("category",category);
+                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                 startActivity(intent);
             }
         });
@@ -48,6 +61,7 @@ public class StoricoActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
                 String category = "Frullati";
                 intent.putExtra("category",category);
+                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                 startActivity(intent);
             }
         });

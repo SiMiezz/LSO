@@ -63,7 +63,18 @@ char* estraiRichiesta(char* request){
 
 char* discriminaRichiesta(char* method, char* path){
     // Discrimina la richiesta in base al metodo
-    if(strcmp(method, "getUtenteByEmailAndPassword") == 0){
+    if(strcmp(method, "getUtenteByEmail") == 0){
+        // Estraggo il parametro dalla richiesta
+        char* email = path;
+        char* json = NULL;
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Utente* utente = getUtenteByEmail(email);
+        if(utente != NULL)
+            json = utenteToJson(utente);
+        return json;
+    } 
+    else if(strcmp(method, "getUtenteByEmailAndPassword") == 0){
         // Estraggo i due parametri dalla richiesta
         char* email = strtok(path, "$$");
         char* password = path + strlen(email) + 2;

@@ -6,6 +6,7 @@
 #include <stdbool.h>
 
 
+Utente* getUtenteByEmail(char* email);
 Utente* getUtenteByEmailAndPassword(char* email, char* password);
 Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type bevanda_type);
 Ingrediente** getIngredientiByBevanda(Bevanda* bevanda);

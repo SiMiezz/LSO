@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.card.MaterialCardView;
+import com.lso.client.Controller.UtenteController;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 
 public class HomeActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class HomeActivity extends AppCompatActivity {
     private ImageButton logoutButton;
     private MaterialCardView acquistaButton;
     private MaterialCardView storicoButton;
+
+    private UtenteController utenteController = new UtenteController();
+
+    private String emailCorrente;
+    private Utente utenteCorrente;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,6 +31,11 @@ public class HomeActivity extends AppCompatActivity {
         logoutButton = findViewById(R.id.logout_button_home);
         acquistaButton = findViewById(R.id.acquista_button_home);
         storicoButton = findViewById(R.id.storico_button_home);
+
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+        }).start();
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -36,6 +48,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), AcquistaActivity.class);
+                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                 startActivity(intent);
             }
         });
@@ -44,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), StoricoActivity.class);
+                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                 startActivity(intent);
             }
         });
