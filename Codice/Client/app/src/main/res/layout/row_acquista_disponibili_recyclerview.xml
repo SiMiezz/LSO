@@ -36,16 +36,29 @@
             android:layout_marginTop="3dp"
             android:layout_marginBottom="3dp"/>
 
-        <TextView
-            android:id="@+id/row_acquista_disponibili_prezzo"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
             android:layout_weight="0.5"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:layout_marginTop="3dp"
-            android:layout_marginBottom="3dp"/>
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/row_acquista_disponibili_prezzo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginBottom="3dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="€"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:layout_gravity="center"/>
+        </LinearLayout>
 
     </LinearLayout>
 
