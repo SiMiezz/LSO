@@ -58,7 +58,8 @@ int main(int argc, char* argv[]){
     // Ciclo infinito per gestire le connessioni in ingresso 
     while (1) {
         sleep(1);
-        printf("In attesa di una connessione...\n");
+        printf("In attesa di una connessione...\n\n\n");
+
 
         bzero(&address, sizeof(address));
         bzero(buffer, 1024);
@@ -68,7 +69,7 @@ int main(int argc, char* argv[]){
             perror("accept failed");
             exit(EXIT_FAILURE);
         } else {
-            printf("Connessione accettata\n");
+            printf("Connessione accettata\n\n");
         }
 
         // Crea un thread per gestire la richiesta del client

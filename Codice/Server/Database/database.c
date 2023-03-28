@@ -23,6 +23,7 @@ Utente* getUtenteByEmail(char* email){
     // Creazione Query
     char query[1024];
     sprintf(query, "SELECT * FROM utente WHERE email = '%s'", email);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -81,6 +82,7 @@ Utente* getUtenteByEmailAndPassword(char* email, char* password){
     // Creazione Query
     char query[1024];
     sprintf(query, "SELECT * FROM utente WHERE email = '%s' AND password = '%s'", email, password);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -139,6 +141,7 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
     // Creazione Query 
     char query[1024];
     sprintf(query, "SELECT b.id,b.nome,b.prezzo,b.tipo,b.bar_nome FROM bevanda AS b JOIN acquisto AS a ON b.id=a.bevanda_id WHERE a.utente_email=\"%s\" AND b.tipo=%d", utente->email, tipo);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -207,6 +210,7 @@ Ingrediente** getIngredientiByBevanda(Bevanda* bevanda){
     // Creazione Query
     char query[1024];
     sprintf(query, "SELECT ingrediente_nome FROM contiene WHERE bevanda_id=%d", bevanda->id);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -347,6 +351,7 @@ void acquistaBevanda(Utente* utente, Bevanda* bevanda){
     // Creazione Query
     char query[1024];
     sprintf(query, "INSERT INTO acquisto (utente_email, bevanda_id) VALUES ('%s', %d)", utente->email, bevanda->id);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {
@@ -375,6 +380,7 @@ void registraUtente(Utente* utente){
     // Creazione Query
     char query[1024];
     sprintf(query, "INSERT INTO utente (email, password, nome, cognome, bar_nome) VALUES ('%s', '%s', '%s', '%s', '%s')", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
+    printf("%s\n", query);
 
     // Esecuzione di una query
     if (mysql_query(conn, query)) {

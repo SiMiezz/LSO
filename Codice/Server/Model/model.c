@@ -45,8 +45,6 @@ char* barToJson(Bar* bar){
 
     sprintf(result, "{\"nome\":\"%s\"}", bar->nome);
 
-    printf("%s\n", result);
-
     return result;
 }
 
@@ -55,8 +53,6 @@ char* bevandaToJson(Bevanda* bevanda){
     char* result = malloc(256 * sizeof(char));
 
     sprintf(result, "{\"id\":%d, \"nome\":\"%s\", \"prezzo\":%f, \"tipo\":%d, \"bar_nome\":\"%s\"}", bevanda->id, bevanda->nome, bevanda->prezzo, bevanda->tipo, bevanda->bar_nome);
-
-    printf("%s\n", result);
 
     return result;
 }
@@ -67,8 +63,6 @@ char* ingredienteToJson(Ingrediente* ingrediente){
 
     sprintf(result, "{\"nome\":\"%s\"}", ingrediente->nome);
 
-    printf("%s\n", result);
-
     return result;
 }
 
@@ -77,8 +71,6 @@ char* utenteToJson(Utente* utente){
     char* result = malloc(512 * sizeof(char));
 
     sprintf(result, "{\"email\":\"%s\", \"password\":\"%s\", \"nome\":\"%s\", \"cognome\":\"%s\", \"bar_nome\":\"%s\"}", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
-
-    printf("%s\n", result);
 
     return result;
 }
@@ -117,8 +109,6 @@ Bar* jsonToBar(char* json) {
     }
 
     free(jsonCopy);
-
-    printf("%s\n", bar->nome);
 
     return bar;
 }
@@ -173,12 +163,6 @@ Bevanda* jsonToBevanda(char* json) {
 
     free(jsonCopy);
 
-    printf("%d\n", bevanda->id);
-    printf("%s\n", bevanda->nome);
-    printf("%f\n", bevanda->prezzo);
-    printf("%d\n", bevanda->tipo);
-    printf("%s\n", bevanda->bar_nome);
-
     return bevanda;
 }
 
@@ -215,8 +199,6 @@ Ingrediente* jsonToIngrediente(char* json) {
     }
 
     free(jsonCopy);
-
-    printf("%s\n", ingrediente->nome);
 
     return ingrediente;
 }
@@ -266,12 +248,6 @@ Utente* jsonToUtente(char* json){
     }
 
     free(jsonCopy);
-
-    printf("%s\n", utente->email);
-    printf("%s\n", utente->password);
-    printf("%s\n", utente->nome);
-    printf("%s\n", utente->cognome);
-    printf("%s\n", utente->bar_nome);
 
     return utente;
 }

@@ -14,7 +14,7 @@ void* creazioneThread(void* arg){
     char* request = buffer;
 
     fflush(stdout);
-    printf("Ricevuto: %s\n", buffer);
+    printf("Ricevuto: %s", buffer);
 
     // Elabora la richiesta e restituisci il risultato
     fflush(stdout);
@@ -23,7 +23,7 @@ void* creazioneThread(void* arg){
     char* result = estraiRichiesta(request);
     if(result != NULL){
         fflush(stdout);
-        printf("Risultato: %s\n", result);
+        printf("Risultato: %s\n\n", result);
     }
 
     // Invia il risultato al client 
@@ -36,7 +36,7 @@ void* creazioneThread(void* arg){
     bzero(buffer, 1024);
     close(new_socket);
     fflush(stdout);
-    printf("Connessione chiusa\n");
+    printf("Connessione chiusa\n\n");
 
     pthread_exit(NULL);
 }
