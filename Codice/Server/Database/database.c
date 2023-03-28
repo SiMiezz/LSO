@@ -301,3 +301,33 @@ void acquistaBevanda(Utente* utente, Bevanda* bevanda){
 
     printf("Bevanda acquistata\n");
 }
+
+
+void registraUtente(Utente* utente){
+
+    MYSQL *conn;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)){
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[1024];
+    sprintf(query, "INSERT INTO utente (email, password, nome, cognome, bar_nome) VALUES ('%s', '%s', '%s', '%s', '%s')", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Liberazione della memoria
+    mysql_close(conn);
+
+    printf("Utente registrato\n");
+
+}

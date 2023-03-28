@@ -12,6 +12,7 @@ Ingrediente** getIngredientiByBevanda(Bevanda* bevanda);
 Bevanda** getDisponibiliByBevandaType(Bevanda_Type bevanda_type);
 Bevanda** getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type bevanda_type, bool recenti, Ingrediente** ingredienti);
 void acquistaBevanda(Utente* utente, Bevanda* bevanda);
+void registraUtente(Utente* utente);
 
 
 #endif

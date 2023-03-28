@@ -119,6 +119,18 @@ char* discriminaRichiesta(char* method, char* path){
     else if(strcmp(method, "acquistaBevanda") == 0){
         
     }
+    else if(strcmp(method, "registraUtente") == 0){
+        // Estraggo il parametro dalla richiesta
+        char* jsonUtente = path;
+
+        // Converto la stringa in un oggetto Utente
+        Utente* utente = jsonToUtente(jsonUtente);
+
+        // Chiamo la funzione del database
+        registraUtente(utente);
+
+        return "Utente registrato";
+    }
     else {
         return "Metodo non supportato";
     }

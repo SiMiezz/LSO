@@ -55,6 +55,17 @@ public class UtenteController {
         return utente;
     }
 
+    public void registraUtente(Utente utente){
+
+        connessioneController.startConnection();
+
+        //richiesta
+        connessioneController.writeOnOutput("registraUtente$$"+utenteToJson(utente));
+
+        connessioneController.closeConnection();
+
+    }
+
 
     public String utenteToJson(Utente utente){
         String json = gson.toJson(utente);

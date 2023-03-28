@@ -91,7 +91,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#EEE">
@@ -113,7 +113,7 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#EEE">
@@ -122,7 +122,7 @@
                         android:id="@+id/confirm_password_text_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:hint="Confirm Password"
+                        android:hint="Conferma Password"
                         android:textColorHint="#787486"
                         android:paddingLeft="20dp"
                         android:textSize="20sp"
@@ -135,34 +135,51 @@
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginHorizontal="90dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
-                    android:backgroundTint="#D21A3D">
+                    android:backgroundTint="#EEE">
 
-                    <TextView
+                    <EditText
+                        android:id="@+id/nome_text_signup"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:text="Registra Face-Id"
-                        android:gravity="center"
+                        android:hint="Nome"
+                        android:textColorHint="#787486"
+                        android:paddingLeft="20dp"
                         android:textSize="20sp"
-                        android:textColor="@color/white"
-                        android:textStyle="bold"/>
-
-                    <Button
-                        android:id="@+id/registra_faceid_button_signup"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:textColor="@color/black"
                         android:background="@android:color/transparent" />
-
-
 
                 </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="30dp"
+                    app:cardCornerRadius="10dp"
+                    android:backgroundTint="#EEE">
+
+                    <EditText
+                        android:id="@+id/cognome_text_signup"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="Cognome"
+                        android:textColorHint="#787486"
+                        android:paddingLeft="20dp"
+                        android:textSize="20sp"
+                        android:textColor="@color/black"
+                        android:background="@android:color/transparent" />
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#FE7E07">
