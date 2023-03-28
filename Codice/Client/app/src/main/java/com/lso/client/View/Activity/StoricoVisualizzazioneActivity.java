@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.lso.client.Controller.BevandaController;
 import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Bevanda;
+import com.lso.client.Model.Enum.Bevanda_Type;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.StoricoAdapter;
@@ -26,8 +27,10 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
     private String category;
     private ArrayList<Bevanda> bevandeArrayList;
+    private StoricoAdapter storicoAdapter;
 
     private UtenteController utenteController = new UtenteController();
+    private BevandaController bevandaController = new BevandaController();
 
     private String emailCorrente;
     private Utente utenteCorrente;
@@ -39,54 +42,38 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
         category = getIntent().getExtras().getString("category");
 
-        new Thread(()->{
-            emailCorrente = getIntent().getExtras().getString("utenteEmail");
-            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
-        }).start();
-
         backButton = findViewById(R.id.back_button_storico_visualizzazione);
         recyclerView = findViewById(R.id.storico_recyclerview);
         categoryText = findViewById(R.id.category_text_storico_visualizzazione);
 
         categoryText.setText(category);
 
+        if(categoryText.getText().equals("Cocktail"))
+            category = "cocktail";
+        else if(categoryText.getText().equals("Frullati"))
+            category = "frullato";
+
+
         bevandeArrayList = new ArrayList<>();
 
-        BevandaController bevandaController = new BevandaController();
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+            System.out.println(utenteCorrente.getCognome()+"####");
 
-        //bevandeArrayList = BevandaController.getStoricoByUtenteAndBevandaType(DaPassareConIntent, categoryText);
+            bevandeArrayList = bevandaController.getStoricoByUtenteAndBevandaType(utenteCorrente, Bevanda_Type.valueOf(category));
+            storicoAdapter = new StoricoAdapter(this, bevandeArrayList);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
+            linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
 
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+            runOnUiThread(()->{
+                recyclerView.setLayoutManager(linearLayoutManager);
+                recyclerView.setAdapter(storicoAdapter);
+            });
 
-        StoricoAdapter storicoAdapter = new StoricoAdapter(this, bevandeArrayList);
+        }).start();
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(storicoAdapter);
+
 
     }
 

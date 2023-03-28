@@ -36,7 +36,7 @@ void* creazioneThread(void* arg){
     bzero(buffer, 1024);
     close(new_socket);
     fflush(stdout);
-    printf("Connessione chiusa\n\n");
+    printf("Connessione chiusa\n\n\n");
 
     pthread_exit(NULL);
 }
@@ -87,7 +87,43 @@ char* discriminaRichiesta(char* method, char* path){
         return json;
     } 
     else if(strcmp(method, "getStoricoByUtenteAndBevandaType") == 0){
-        
+        // Estraggo i due parametri dalla richiesta
+        char* jsonUtente = strtok(path, "$$");
+        char* bevandaType = path + strlen(jsonUtente) + 2;
+        char* json = NULL;
+
+        // Converto la stringa in un oggetto Utente
+        Utente* utente = jsonToUtente(jsonUtente);
+
+        // Converto la stringa in un bevandatype e la passo alla funzione
+        Bevanda_Type tipo;
+        if(strcmp(bevandaType, "cocktail") == 0)
+            tipo = 0;
+        else if(strcmp(bevandaType, "frullato") == 0)
+            tipo = 1;
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Bevanda** bevande = getStoricoByUtenteAndBevandaType(utente, tipo);
+
+        if(bevande == NULL){
+            return NULL;
+        }
+
+        // Per ogni bevanda, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; bevande[i] != NULL; i++){
+            char* jsonBevanda = bevandaToJson(bevande[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonBevanda) + 1);
+                strcpy(json, jsonBevanda);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonBevanda) + 1);
+                strcat(json, jsonBevanda);
+            }
+        }
+
+        return json;
+
     } 
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
         

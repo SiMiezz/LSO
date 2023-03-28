@@ -67,7 +67,6 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
                 recyclerView.setAdapter(disponibiliAdapter);
             });
 
-
         }).start();
 
 

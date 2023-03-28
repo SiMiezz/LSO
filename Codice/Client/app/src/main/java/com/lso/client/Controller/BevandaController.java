@@ -23,9 +23,33 @@ public class BevandaController {
         gson = new Gson();
     }
 
-    public List<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, Bevanda_Type bevanda_type){
-        List<Bevanda> bevande = new ArrayList<>();
-        // to do
+    public ArrayList<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, Bevanda_Type bevanda_type){
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getStoricoByUtenteAndBevandaType$$"+utenteToJson(utente)+"$$"+bevanda_type.toString());
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverso nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+        connessioneController.closeConnection();
+
         return bevande;
     }
 
@@ -83,6 +107,11 @@ public class BevandaController {
     public Bevanda jsonToBevanda(String json){
         Bevanda bevanda = gson.fromJson(json, Bevanda.class);
         return bevanda;
+    }
+
+    public String utenteToJson(Utente utente){
+        String json = gson.toJson(utente);
+        return json;
     }
 
 }
