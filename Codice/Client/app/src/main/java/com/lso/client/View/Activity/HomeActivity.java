@@ -32,10 +32,10 @@ public class HomeActivity extends AppCompatActivity {
         acquistaButton = findViewById(R.id.acquista_button_home);
         storicoButton = findViewById(R.id.storico_button_home);
 
-        new Thread(()->{
-            emailCorrente = getIntent().getExtras().getString("utenteEmail");
-            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
-        }).start();
+//        new Thread(()->{
+//            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+//            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+//        }).start();
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,18 +47,30 @@ public class HomeActivity extends AppCompatActivity {
         acquistaButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AcquistaActivity.class);
-                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), AcquistaActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
+
             }
         });
 
         storicoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StoricoActivity.class);
-                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), StoricoActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
+
             }
         });
     }

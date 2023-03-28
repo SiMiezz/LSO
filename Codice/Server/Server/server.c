@@ -126,7 +126,34 @@ char* discriminaRichiesta(char* method, char* path){
 
     } 
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
+        // Estraggo il parametro dalla richiesta
+        char* jsonBevanda = path;
+        char* json = NULL;
+
+        // Converto la stringa in un oggetto Bevanda
+        Bevanda* bevanda = jsonToBevanda(jsonBevanda);
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Ingrediente** ingredienti = getIngredientiByBevanda(bevanda);
+
+        if(ingredienti == NULL){
+            return NULL;
+        }
+
+        // Per ogni ingrediente, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; ingredienti[i] != NULL; i++){
+            char* jsonIngrediente = ingredienteToJson(ingredienti[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonIngrediente) + 1);
+                strcpy(json, jsonIngrediente);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonIngrediente) + 1);
+                strcat(json, jsonIngrediente);
+            }
+        }
         
+        return json;
     }
     else if(strcmp(method, "getDisponibiliByBevandaType") == 0){
         // Estraggo il parametro dalla richiesta

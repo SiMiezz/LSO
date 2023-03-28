@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.lso.client.Model.Bevanda;
 import com.lso.client.R;
+import com.lso.client.View.Activity.StoricoVisualizzazioneActivity;
 import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
@@ -20,10 +21,12 @@ public class StoricoAdapter extends RecyclerView.Adapter<StoricoAdapter.StoricoH
 
     private Context context;
     private ArrayList<Bevanda> bevandeArrayList;
+    private StoricoVisualizzazioneActivity storicoVisualizzazioneActivity;
 
     public StoricoAdapter(Context context, ArrayList<Bevanda> bevandeArrayList){
         this.context = context;
         this.bevandeArrayList = bevandeArrayList;
+        storicoVisualizzazioneActivity = (StoricoVisualizzazioneActivity) context;
     }
 
     @NonNull
@@ -45,8 +48,9 @@ public class StoricoAdapter extends RecyclerView.Adapter<StoricoAdapter.StoricoH
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, bevanda);
-                bevandaInfoDialog.show();
+//                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, bevanda);
+//                bevandaInfoDialog.show();
+                storicoVisualizzazioneActivity.getIngredientiByBevanda(context, bevanda);
             }
         });
 

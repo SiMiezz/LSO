@@ -32,10 +32,10 @@ public class StoricoActivity extends AppCompatActivity {
         cocktailButton = findViewById(R.id.cocktail_button_storico);
         frullatiButton = findViewById(R.id.frullati_button_storico);
 
-        new Thread(()->{
-            emailCorrente = getIntent().getExtras().getString("utenteEmail");
-            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
-        }).start();
+//        new Thread(()->{
+//            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+//            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+//        }).start();
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,22 +47,34 @@ public class StoricoActivity extends AppCompatActivity {
         cocktailButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
-                String category = "Cocktail";
-                intent.putExtra("category",category);
-                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
+                    String category = "Cocktail";
+                    intent.putExtra("category",category);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
+
             }
         });
 
         frullatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
-                String category = "Frullati";
-                intent.putExtra("category",category);
-                intent.putExtra("utenteEmail", utenteCorrente.getEmail());
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), StoricoVisualizzazioneActivity.class);
+                    String category = "Frullati";
+                    intent.putExtra("category",category);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
+
             }
         });
     }

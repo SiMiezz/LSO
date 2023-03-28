@@ -155,6 +155,8 @@ Bevanda* jsonToBevanda(char* json) {
                 bevanda->tipo = 0;
             else if(strcmp(value, "frullato") == 0)
                 bevanda->tipo = 1;
+            else
+                bevanda->tipo = 0;
         } else if (strcmp(key, "bar_nome") == 0) {
             strcpy(bevanda->bar_nome, value);
         }

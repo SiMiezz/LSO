@@ -43,6 +43,14 @@ public class IngredientiDialogAdapter extends RecyclerView.Adapter<IngredientiDi
 
     }
 
+    public ArrayList<Ingrediente> getIngredientiArrayList() {
+        return ingredientiArrayList;
+    }
+
+    public void setIngredientiArrayList(ArrayList<Ingrediente> ingredientiArrayList) {
+        this.ingredientiArrayList = ingredientiArrayList;
+    }
+
     @Override
     public int getItemCount() {
         return ingredientiArrayList.size();
