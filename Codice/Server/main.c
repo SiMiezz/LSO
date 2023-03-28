@@ -6,6 +6,7 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <pthread.h>
+#include <unistd.h>
 #include "Model/model.h"
 #include "Database/database.h"
 #include "Server/server.h"

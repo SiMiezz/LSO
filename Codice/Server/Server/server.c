@@ -2,6 +2,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
+#include <pthread.h>
+#include <sys/socket.h>
 
 void* creazioneThread(void* arg){
     int new_socket = *((int*) arg);
