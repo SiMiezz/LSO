@@ -160,8 +160,6 @@ char* discriminaRichiesta(char* method, char* path){
         char* bevandaType = path;
         char* json = NULL;
 
-        printf("BevandaType: %s\n", bevandaType);
-
         // Converto la stringa in un bevandatype e la passo alla funzione
         Bevanda_Type tipo;
         if(strcmp(bevandaType, "cocktail") == 0)
@@ -187,8 +185,50 @@ char* discriminaRichiesta(char* method, char* path){
         
         return json;
     }
-    else if(strcmp(method, "getConsigliatiByBevandaTypeAndRecentiAndIngredienti") == 0){
-        
+    else if(strcmp(method, "getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti") == 0){
+        // Estraggo i quatro parametri dalla richiesta
+        char* jsonUtente; // = ...
+        char* bevandaType; // = ...
+        char* charRecenti; // = ...
+        char* jsonIngredienti; // = ...
+        char* json = NULL;
+
+
+        // Converto i parametri 
+        Utente* utente; // = ...
+
+        Bevanda_Type tipo;
+        if(strcmp(bevandaType, "cocktail") == 0)
+            tipo = 0;
+        else if(strcmp(bevandaType, "frullato") == 0)
+            tipo = 1;
+
+        bool recenti;
+        if(strcmp(charRecenti, "true") == 0)
+            recenti = true;
+        else if(strcmp(charRecenti, "false") == 0)
+            recenti = false;
+
+        Ingrediente** ingredienti; // = ...
+
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Bevanda** bevande = getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(utente, tipo, recenti, ingredienti);
+
+        // Per ogni bevanda, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; bevande[i] != NULL; i++){
+            char* jsonBevanda = bevandaToJson(bevande[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonBevanda) + 1);
+                strcpy(json, jsonBevanda);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonBevanda) + 1);
+                strcat(json, jsonBevanda);
+            }
+        }
+
+        return json;
         
     }
     else if(strcmp(method, "acquistaBevanda") == 0){
