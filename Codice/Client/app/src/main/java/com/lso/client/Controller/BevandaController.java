@@ -90,12 +90,38 @@ public class BevandaController {
     }
 
     public ArrayList<Bevanda> getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente utente, Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){
-        ArrayList<Bevanda> bevande = new ArrayList<>();
 
-        String i = "";
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        String ingredientiJson = "";
         for(Ingrediente ingrediente : ingredienti)
-            i = i+ingredienteToJson(ingrediente)+" ";
-        System.out.println(utenteToJson(utente) +" "+ bevanda_type +" "+ recenti +" "+ i);
+            ingredientiJson = ingredientiJson+ingredienteToJson(ingrediente);
+        System.out.println(utenteToJson(utente) +" "+ bevanda_type +" "+ recenti +" "+ ingredientiJson);
+
+        connessioneController.writeOnOutput("getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti$$"+bevanda_type+"$$"+recenti+"$$"+ingredientiJson);
+
+        // Recupero la stringa contenente più JSON {json1}{json2}{...}
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverserò nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+        connessioneController.closeConnection();
 
         return bevande;
     }
