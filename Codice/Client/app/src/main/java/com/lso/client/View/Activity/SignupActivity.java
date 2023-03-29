@@ -6,15 +6,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.ImageFormat;
 import android.os.Bundle;
+import android.util.SparseArray;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.android.gms.vision.Frame;
+import com.google.android.gms.vision.face.Face;
+import com.google.android.gms.vision.face.FaceDetector;
 import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
+
+import java.nio.ByteBuffer;
+import java.util.Arrays;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -23,6 +33,8 @@ public class SignupActivity extends AppCompatActivity {
     private EditText confirmPasswordText;
     private EditText nomeText;
     private EditText cognomeText;
+
+    private Button registraVoltoButton;
 
     private Button registraButton;
     private Context context;
@@ -42,7 +54,16 @@ public class SignupActivity extends AppCompatActivity {
         nomeText = findViewById(R.id.nome_text_signup);
         cognomeText = findViewById(R.id.cognome_text_signup);
 
+        registraVoltoButton = findViewById(R.id.registra_volto_button_signup);
+
         registraButton = findViewById(R.id.registra_button_signup);
+
+        registraVoltoButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
 
         registraButton.setOnClickListener(new View.OnClickListener() {
             @Override

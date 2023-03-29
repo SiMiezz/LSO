@@ -189,6 +189,7 @@ char* discriminaRichiesta(char* method, char* path){
     }
     else if(strcmp(method, "getConsigliatiByBevandaTypeAndRecentiAndIngredienti") == 0){
         
+        
     }
     else if(strcmp(method, "acquistaBevanda") == 0){
         // Estraggo i due parametri della richiesta

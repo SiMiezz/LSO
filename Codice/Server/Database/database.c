@@ -328,10 +328,119 @@ Bevanda** getDisponibiliByBevandaType(Bevanda_Type tipo){
     return bevande;
 }
 
-Bevanda** getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type tipo, bool recenti, Ingrediente** ingredienti){
+Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* utente, Bevanda_Type tipo, bool recenti, Ingrediente** ingredienti){
     Bevanda** bevande;
 
-    // todo
+    // Nel DB le enumeration partono da 1
+    tipo++;
+
+    MYSQL *conn;
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)){
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[8192];
+    // Creo la stringa degli ingredienti
+    char ingredienti_string[1024];
+    ingredienti_string[0] = '\0';
+    int i = 0;
+    printf("miao\n");
+    
+    if(ingredienti != NULL){
+        while(ingredienti[i] != NULL){
+        strcat(ingredienti_string, "'");
+        strcat(ingredienti_string, ingredienti[i]->nome);
+        strcat(ingredienti_string, "'");
+        if(ingredienti[i+1] != NULL)
+            strcat(ingredienti_string, ", ");
+        i++;
+        }
+    }
+
+    if(i == 0)
+        ingredienti_string[0] = '\0';
+
+    printf("%s\n", ingredienti_string);
+
+    if(recenti){
+        // Creo la query
+        char query1[2048];
+        char query2[2048];
+
+        if (ingredienti_string[0] == '\0'){
+            sprintf(query1, "(SELECT DISTINCT b.* FROM bevanda AS b JOIN acquisto AS a ON b.id=a.bevanda_id WHERE a.utente_email=\"%s\" AND b.tipo = %d)", utente->email, tipo);
+            sprintf(query2, "(SELECT b.* FROM bevanda AS b WHERE tipo=%d AND id NOT IN (SELECT bevanda_id FROM acquisto AS a WHERE a.utente_email=\"%s\"))", tipo, utente->email);
+            sprintf(query, "%s UNION %s", query1, query2);
+        }
+        else{
+            sprintf(query1, "(SELECT DISTINCT b.* FROM bevanda AS b JOIN acquisto AS a ON b.id=a.bevanda_id WHERE a.utente_email=\"%s\" AND b.tipo = %d AND b.id IN (SELECT bevanda_id FROM contiene WHERE ingrediente_nome IN (%s)))", utente->email, tipo, ingredienti_string);
+            sprintf(query2, "(SELECT b.* FROM bevanda AS b WHERE tipo=%d AND id IN ((SELECT bevanda_id FROM contiene WHERE ingrediente_nome IN (%s))) AND id NOT IN (SELECT bevanda_id FROM acquisto AS a WHERE a.utente_email=\"%s\"))", tipo, ingredienti_string, utente->email);
+            sprintf(query, "%s UNION %s", query1, query2);
+        }
+            
+    } else {
+        // Creo la query
+        if(ingredienti_string[0] == '\0')
+            sprintf(query, "SELECT * FROM bevanda WHERE tipo = %d", tipo);
+        else
+            sprintf(query, "SELECT * FROM bevanda WHERE tipo = %d AND id IN (SELECT bevanda_id FROM contiene WHERE ingrediente_nome IN (%s))", tipo, ingredienti_string);
+    }
+
+    printf("%s\n", query);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Ottenimento dei risultati della query
+    result = mysql_store_result(conn);
+
+    // Numero di righe
+    int num_rows = mysql_num_rows(result);
+
+    //Controllo se le bevande esistono
+    if(num_rows == 0){
+        printf("Bevande non trovate\n");
+        mysql_free_result(result);
+        mysql_close(conn);
+        return NULL;
+    }
+
+    printf("Bevande trovate\n");
+    bevande = malloc((num_rows + 1) * sizeof(Bevanda*));
+
+    // Setto l'ultimo elemento a NULL (nodo sentinella)
+    bevande[num_rows] = NULL;
+
+    // Ciclo sui risultati e stampa dei valori delle colonne
+    int j = 0;
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        bevande[j] = malloc(sizeof(Bevanda));
+
+        bevande[j]->id = atoi(row[0]);
+        strcpy(bevande[j]->nome, row[1]);
+        bevande[j]->prezzo = atof(row[2]);
+        if(strcmp(row[3], "cocktail") == 0)
+            bevande[j]->tipo = 0;
+        else if(strcmp(row[3], "frullato") == 0)
+            bevande[j]->tipo = 1;
+        strcpy(bevande[j]->bar_nome, row[4]);
+
+        j++;
+    }
+
+    // Liberazione della memoria
+    mysql_free_result(result);
+    mysql_close(conn);
 
     return bevande;
 }
