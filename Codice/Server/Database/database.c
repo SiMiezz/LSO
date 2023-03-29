@@ -413,7 +413,6 @@ Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* u
     char ingredienti_string[1024];
     ingredienti_string[0] = '\0';
     int i = 0;
-    printf("miao\n");
     
     if(ingredienti != NULL){
         while(ingredienti[i] != NULL){

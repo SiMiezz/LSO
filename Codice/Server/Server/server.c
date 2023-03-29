@@ -215,15 +215,14 @@ char* discriminaRichiesta(char* method, char* path){
     }
     else if(strcmp(method, "getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti") == 0){
         // Estraggo i quatro parametri dalla richiesta
-        char* jsonUtente; // = ...
-        char* bevandaType; // = ...
-        char* charRecenti; // = ...
-        char* jsonIngredienti; // = ...
+        char* jsonUtente = strtok(path, "$$");
+        char* bevandaType = strtok(NULL, "$$");
+        char* charRecenti = strtok(NULL, "$$");
+        char* jsonIngredienti = strtok(NULL, "$$");
         char* json = NULL;
 
 
-        // Converto i parametri 
-        Utente* utente; // = ...
+        Utente* utente = jsonToUtente(jsonUtente);
 
         Bevanda_Type tipo;
         if(strcmp(bevandaType, "cocktail") == 0)
@@ -237,11 +236,32 @@ char* discriminaRichiesta(char* method, char* path){
         else if(strcmp(charRecenti, "false") == 0)
             recenti = false;
 
-        Ingrediente** ingredienti; // = ...
-
+        Ingrediente** ingredienti; 
+        // jsonIngredienti è del tipo {json1}{json2}{json3}, quindi devo dividere la stringa in più sottostringhe e convertirle in oggetti Ingrediente 
+        // e poi inserirli in un array di puntatori a Ingrediente
+        char* jsonIngrediente = strtok(jsonIngredienti, "{}");
+        int i = 0;
+        while(jsonIngrediente != NULL){
+            Ingrediente* ingrediente = jsonToIngrediente(jsonIngrediente);
+            if(ingredienti == NULL){
+                ingredienti = malloc(sizeof(Ingrediente*));
+                ingredienti[i] = ingrediente;
+            }
+            else {
+                ingredienti = realloc(ingredienti, sizeof(Ingrediente*) * (i + 1));
+                ingredienti[i] = ingrediente;
+            }
+            jsonIngrediente = strtok(NULL, "{}");
+            i++;
+        }
+        
 
         // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
         Bevanda** bevande = getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(utente, tipo, recenti, ingredienti);
+
+        if(bevande == NULL){
+            return NULL;
+        }
 
         // Per ogni bevanda, converto l'oggetto in JSON e lo concateno alla stringa json
         for(int i = 0; bevande[i] != NULL; i++){
@@ -255,6 +275,7 @@ char* discriminaRichiesta(char* method, char* path){
                 strcat(json, jsonBevanda);
             }
         }
+
 
         return json;
         

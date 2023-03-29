@@ -101,7 +101,10 @@ public class BevandaController {
             ingredientiJson = ingredientiJson+ingredienteToJson(ingrediente);
         System.out.println(utenteToJson(utente) +" "+ bevanda_type +" "+ recenti +" "+ ingredientiJson);
 
-        connessioneController.writeOnOutput("getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti$$"+bevanda_type+"$$"+recenti+"$$"+ingredientiJson);
+        if(ingredientiJson.equals(""))
+            connessioneController.writeOnOutput("getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti$$"+utenteToJson(utente)+"$$"+bevanda_type+"$$"+recenti);
+        else
+            connessioneController.writeOnOutput("getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti$$"+utenteToJson(utente)+"$$"+bevanda_type+"$$"+recenti+"$$"+ingredientiJson);
 
         // Recupero la stringa contenente più JSON {json1}{json2}{...}
         result = connessioneController.readFromInput();
