@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -13,10 +14,13 @@ import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lso.client.Controller.BevandaController;
+import com.lso.client.Controller.IngredienteController;
 import com.lso.client.Model.Bevanda;
 import com.lso.client.Model.Enum.Bevanda_Type;
+import com.lso.client.Model.Ingrediente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.DisponibiliAdapter;
+import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
 
@@ -32,8 +36,11 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
     private ArrayList<Bevanda> bevandeArrayList;
 
     private BevandaController bevandaController = new BevandaController();
+    private IngredienteController ingredienteController = new IngredienteController();
 
     private DisponibiliAdapter disponibiliAdapter;
+
+    private ArrayList<Ingrediente> ingredienteArrayListPerDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -94,5 +101,18 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
         Animation bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_animation);
 
         carrelloButton.startAnimation(bounceAnimation);
+    }
+
+    public void getIngredientiByBevanda(Context context, Bevanda bevanda){
+        new Thread(()->{
+            ingredienteArrayListPerDialog = ingredienteController.getIngredientiByBevanda(bevanda);
+
+            runOnUiThread(()->{
+                System.out.println("miao2");
+                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, ingredienteArrayListPerDialog);
+                bevandaInfoDialog.show();
+            });
+
+        }).start();
     }
 }

@@ -20,10 +20,12 @@ public class DisponibiliAdapter extends RecyclerView.Adapter<DisponibiliAdapter.
 
     private Context context;
     private ArrayList<Bevanda> bevandeArrayList;
+    AcquistaDisponibiliActivity acquistaDisponibiliActivity;
 
     public DisponibiliAdapter(Context context, ArrayList<Bevanda> bevandeArrayList){
         this.context = context;
         this.bevandeArrayList = bevandeArrayList;
+        acquistaDisponibiliActivity = (AcquistaDisponibiliActivity) context;
     }
 
 
@@ -47,9 +49,17 @@ public class DisponibiliAdapter extends RecyclerView.Adapter<DisponibiliAdapter.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                acquistaDisponibiliActivity.getIngredientiByBevanda(context, bevanda);
+            }
+        });
+
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
                 //aggiunta al carrello
                 AcquistaDisponibiliActivity acquistaDisponibiliActivity = (AcquistaDisponibiliActivity) context;
                 acquistaDisponibiliActivity.cartAnimation();
+                return true;
             }
         });
 

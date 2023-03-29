@@ -102,7 +102,6 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
     public void getIngredientiByBevanda(Context context, Bevanda bevanda){
         new Thread(()->{
             ingredienteArrayList = ingredienteController.getIngredientiByBevanda(bevanda);
-            System.out.println("miao1"+ingredienteArrayList.size());
 
             runOnUiThread(()->{
                 System.out.println("miao2");

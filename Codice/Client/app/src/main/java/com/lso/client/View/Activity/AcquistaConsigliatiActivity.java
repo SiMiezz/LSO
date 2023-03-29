@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -15,11 +16,13 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lso.client.Controller.IngredienteController;
 import com.lso.client.Model.Bevanda;
 import com.lso.client.Model.Ingrediente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.ConsigliatiAdapter;
 import com.lso.client.View.Adapter.IngredientiSpinnerAdapter;
+import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
 
@@ -38,6 +41,10 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
     private ArrayList<Ingrediente> ingredientiArrayList;
 
     private String category;
+
+    private ArrayList<Ingrediente> ingredienteArrayListPerDialog;
+
+    private IngredienteController ingredienteController = new IngredienteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,5 +152,18 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
         Animation bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_animation);
 
         carrelloButton.startAnimation(bounceAnimation);
+    }
+
+    public void getIngredientiByBevanda(Context context, Bevanda bevanda){
+        new Thread(()->{
+            ingredienteArrayListPerDialog = ingredienteController.getIngredientiByBevanda(bevanda);
+
+            runOnUiThread(()->{
+                System.out.println("miao2");
+                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, ingredienteArrayListPerDialog);
+                bevandaInfoDialog.show();
+            });
+
+        }).start();
     }
 }

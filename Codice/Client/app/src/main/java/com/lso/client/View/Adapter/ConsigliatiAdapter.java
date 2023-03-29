@@ -21,10 +21,12 @@ public class ConsigliatiAdapter extends RecyclerView.Adapter<ConsigliatiAdapter.
 
     private Context context;
     private ArrayList<Bevanda> bevandeArrayList;
+    private AcquistaConsigliatiActivity acquistaConsigliatiActivity;
 
     public ConsigliatiAdapter(Context context, ArrayList<Bevanda> bevandeArrayList){
         this.context = context;
         this.bevandeArrayList = bevandeArrayList;
+        acquistaConsigliatiActivity = (AcquistaConsigliatiActivity) context;
     }
 
     @NonNull
@@ -46,9 +48,17 @@ public class ConsigliatiAdapter extends RecyclerView.Adapter<ConsigliatiAdapter.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                acquistaConsigliatiActivity.getIngredientiByBevanda(context, bevanda);
+            }
+        });
+
+        holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
                 //aggiunta al carrello
                 AcquistaConsigliatiActivity acquistaConsigliatiActivity = (AcquistaConsigliatiActivity) context;
                 acquistaConsigliatiActivity.cartAnimation();
+                return true;
             }
         });
 

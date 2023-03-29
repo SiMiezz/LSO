@@ -48,8 +48,6 @@ public class StoricoAdapter extends RecyclerView.Adapter<StoricoAdapter.StoricoH
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, bevanda);
-//                bevandaInfoDialog.show();
                 storicoVisualizzazioneActivity.getIngredientiByBevanda(context, bevanda);
             }
         });

@@ -14,7 +14,7 @@ public class ConnessioneController {
     private BufferedReader input;
     private PrintWriter output;
 
-    private final String serverName = "192.168.1.248";
+    private final String serverName = "192.168.10.118";
     private final int serverPort = 1926;
 
 
