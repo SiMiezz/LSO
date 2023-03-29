@@ -89,9 +89,14 @@ public class BevandaController {
 
     }
 
-    public List<Bevanda> getConsigliatiByBevandaTypeAndRecentiAndIngredienti(Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){
-        List<Bevanda> bevande = new ArrayList<>();
-        // to do
+    public ArrayList<Bevanda> getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente utente, Bevanda_Type bevanda_type, boolean recenti, List<Ingrediente> ingredienti){
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+
+        String i = "";
+        for(Ingrediente ingrediente : ingredienti)
+            i = i+ingredienteToJson(ingrediente)+" ";
+        System.out.println(utenteToJson(utente) +" "+ bevanda_type +" "+ recenti +" "+ i);
+
         return bevande;
     }
 
@@ -111,6 +116,11 @@ public class BevandaController {
 
     public String utenteToJson(Utente utente){
         String json = gson.toJson(utente);
+        return json;
+    }
+
+    public String ingredienteToJson(Ingrediente ingrediente){
+        String json = gson.toJson(ingrediente);
         return json;
     }
 

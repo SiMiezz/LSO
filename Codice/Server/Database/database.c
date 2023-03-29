@@ -193,6 +193,68 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
     return bevande;
 }
 
+Ingrediente** getAllIngredienti(){
+    Ingrediente** ingredienti;
+
+    MYSQL *conn;
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)){
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[1024];
+    sprintf(query, "SELECT * FROM ingrediente");
+    printf("%s\n", query);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Ottenimento dei risultati della query
+    result = mysql_store_result(conn);
+
+    // Numero di righe
+    int num_rows = mysql_num_rows(result);
+
+    //Controllo se gli ingredienti esistono
+    if(num_rows == 0){
+        printf("Ingredienti non trovati\n");
+        mysql_free_result(result);
+        mysql_close(conn);
+        return NULL;
+    }
+
+    printf("Ingredienti trovati\n");
+    ingredienti = malloc((num_rows + 1) * sizeof(Ingrediente*));
+
+    // Setto l'ultimo elemento a NULL (nodo sentinella)
+    ingredienti[num_rows] = NULL;
+
+    // Ciclo sui risultati e stampa dei valori delle colonne
+    int i = 0;
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        ingredienti[i] = malloc(sizeof(Ingrediente));
+
+        strcpy(ingredienti[i]->nome, row[0]);
+
+        i++;
+    }
+
+    // Liberazione della memoria
+    mysql_free_result(result);
+    mysql_close(conn);
+
+    return ingredienti;
+}
+
 Ingrediente** getIngredientiByBevanda(Bevanda* bevanda){
     Ingrediente** ingredienti;
 

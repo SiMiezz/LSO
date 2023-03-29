@@ -53,6 +53,37 @@ public class IngredienteController {
         return ingredienti;
     }
 
+    public ArrayList<Ingrediente> getAllIngredienti(){
+        ArrayList<Ingrediente> ingredienteArrayList = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        // richiesta
+        connessioneController.writeOnOutput("getAllIngredienti");
+
+        // ricezione
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverserò nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Ingrediente[] ingredienteArray = gson.fromJson(result, Ingrediente[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Ingrediente ingrediente : ingredienteArray)
+                ingredienteArrayList.add(ingrediente);
+        }
+
+
+        return ingredienteArrayList;
+    }
+
     public String ingredienteToJson(Ingrediente ingrediente){
         String json = gson.toJson(ingrediente);
         return json;

@@ -6,6 +6,7 @@
 #include <pthread.h>
 #include <sys/socket.h>
 
+
 void* creazioneThread(void* arg){
     int new_socket = *((int*) arg);
     char buffer[1024] = {0};
@@ -41,6 +42,7 @@ void* creazioneThread(void* arg){
     pthread_exit(NULL);
 }
 
+
 char* estraiRichiesta(char* request){
 
     // Rimuovo il carattere di fine stringa
@@ -60,6 +62,7 @@ char* estraiRichiesta(char* request){
     return discriminaRichiesta(method, path);
 
 }
+
 
 char* discriminaRichiesta(char* method, char* path){
     // Discrimina la richiesta in base al metodo
@@ -125,6 +128,31 @@ char* discriminaRichiesta(char* method, char* path){
         return json;
 
     } 
+    else if(strcmp(method, "getAllIngredienti") == 0){
+        char* json = NULL;
+
+        Ingrediente** ingredienti = getAllIngredienti();
+
+        if(ingredienti == NULL){
+            return NULL;
+        }
+
+        // Per ogni ingrediente, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; ingredienti[i] != NULL; i++){
+            char* jsonIngrediente = ingredienteToJson(ingredienti[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonIngrediente) + 1);
+                strcpy(json, jsonIngrediente);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonIngrediente) + 1);
+                strcat(json, jsonIngrediente);
+            }
+        }
+
+        return json;
+
+    }
     else if(strcmp(method, "getIngredientiByBevanda") == 0){
         // Estraggo il parametro dalla richiesta
         char* jsonBevanda = path;
@@ -262,3 +290,4 @@ char* discriminaRichiesta(char* method, char* path){
         return "Metodo non supportato";
     }
 }
+

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.card.MaterialCardView;
+import com.lso.client.Controller.UtenteController;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 
 public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
@@ -15,6 +17,11 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
     private ImageButton backButton;
     private MaterialCardView disponibiliButton;
     private MaterialCardView consigliatiButton;
+
+    private String emailCorrente;
+    private Utente utenteCorrente;
+
+    private UtenteController utenteController = new UtenteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,20 +35,32 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
         disponibiliButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AcquistaDisponibiliActivity.class);
-                String category = "Frullati";
-                intent.putExtra("category",category);
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), AcquistaDisponibiliActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    String category = "Frullati";
+                    intent.putExtra("category",category);
+                    startActivity(intent);
+                }).start();
             }
         });
 
         consigliatiButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), AcquistaConsigliatiActivity.class);
-                String category = "Frullati";
-                intent.putExtra("category",category);
-                startActivity(intent);
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), AcquistaConsigliatiActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    String category = "Frullati";
+                    intent.putExtra("category",category);
+                    startActivity(intent);
+                }).start();
             }
         });
     }

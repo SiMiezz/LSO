@@ -10,15 +10,20 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.lso.client.Controller.BevandaController;
 import com.lso.client.Controller.IngredienteController;
+import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Bevanda;
+import com.lso.client.Model.Enum.Bevanda_Type;
 import com.lso.client.Model.Ingrediente;
+import com.lso.client.Model.Utente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.ConsigliatiAdapter;
 import com.lso.client.View.Adapter.IngredientiSpinnerAdapter;
@@ -36,21 +41,34 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
     private Spinner spinner;
 
     private FloatingActionButton carrelloButton;
+    private Button cercaButton;
 
     private ArrayList<Bevanda> bevandeArrayList;
     private ArrayList<Ingrediente> ingredientiArrayList;
+    private ArrayList<Ingrediente> ingredientiSelezionatiArrayList;
 
     private String category;
 
     private ArrayList<Ingrediente> ingredienteArrayListPerDialog;
 
+    private Context context;
+
     private IngredienteController ingredienteController = new IngredienteController();
+    private BevandaController bevandaController = new BevandaController();
+
+    private String emailCorrente;
+    private Utente utenteCorrente;
+
+    private IngredientiSpinnerAdapter ingredientiSpinnerAdapter;
+
+    private UtenteController utenteController = new UtenteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acquista_consigliati);
 
+        context = this;
 
         backButton = findViewById(R.id.back_button_acquista_consigliati);
         recyclerView = findViewById(R.id.acquista_consigliati_recyclerview);
@@ -58,6 +76,7 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
 
         checkBox = findViewById(R.id.checkbox_acquista_consigliati);
         spinner = findViewById(R.id.spinner_acquista_consigliati);
+        cercaButton = findViewById(R.id.cerca_consigliati_button);
 
         carrelloButton = findViewById(R.id.carrello_button);
 
@@ -65,70 +84,45 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
 
         categoryText.setText(category);
 
+        if(categoryText.getText().equals("Cocktail"))
+            category = "cocktail";
+        else if(categoryText.getText().equals("Frullati"))
+            category = "frullato";
+
         bevandeArrayList = new ArrayList<>();
         ingredientiArrayList = new ArrayList<>();
 
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
-        ingredientiArrayList.add(new Ingrediente("gin"));
-        ingredientiArrayList.add(new Ingrediente("tonica"));
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+            ingredientiArrayList = ingredienteController.getAllIngredienti();
+
+            runOnUiThread(()->{
+                ingredientiSpinnerAdapter = new IngredientiSpinnerAdapter(this, 0, ingredientiArrayList);
+                spinner.setAdapter(ingredientiSpinnerAdapter);
+            });
 
 
-        IngredientiSpinnerAdapter ingredientiSpinnerAdapter = new IngredientiSpinnerAdapter(this, 0, ingredientiArrayList);
-        spinner.setAdapter(ingredientiSpinnerAdapter);
+        }).start();
 
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
-        bevandeArrayList.add(new Bevanda("negroni", 5.99f));
-        bevandeArrayList.add(new Bevanda("spritz", 4.99f));
-        bevandeArrayList.add(new Bevanda("gin tonic", 6.99f));
-        bevandeArrayList.add(new Bevanda("frullato alla fragola", 7.99f));
+        cercaButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(()->{
+                    bevandeArrayList = bevandaController.getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(utenteCorrente, Bevanda_Type.valueOf(category),  checkBox.isChecked(), ingredientiSpinnerAdapter.getIngredientiSelezionatiArrayList());
+                    ConsigliatiAdapter consigliatiAdapter = new ConsigliatiAdapter(context, bevandeArrayList);
 
-        ConsigliatiAdapter consigliatiAdapter = new ConsigliatiAdapter(this, bevandeArrayList);
+                    runOnUiThread(()->{
+                        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getApplicationContext());
+                        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+                        recyclerView.setLayoutManager(linearLayoutManager);
+                        recyclerView.setAdapter(consigliatiAdapter);
+                    });
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
-        linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        recyclerView.setLayoutManager(linearLayoutManager);
-        recyclerView.setAdapter(consigliatiAdapter);
-
+                }).start();
+            }
+        });
 
     }
 
