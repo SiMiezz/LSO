@@ -191,7 +191,19 @@ char* discriminaRichiesta(char* method, char* path){
         
     }
     else if(strcmp(method, "acquistaBevanda") == 0){
-        
+        // Estraggo i due parametri della richiesta
+        char* jsonUtente = strtok(path, "$$");
+        char* jsonBevanda = path + strlen(jsonUtente) + 2;
+        char* json = NULL;
+
+        // Converto le stringhe in oggetti Utente e Bevanda
+        Utente* utente = jsonToUtente(jsonUtente);
+        Bevanda* bevanda = jsonToBevanda(jsonBevanda);
+
+        // Chiamo la funzione del database
+        acquistaBevanda(utente, bevanda);
+
+        return "Bevanda acquistata";
     }
     else if(strcmp(method, "registraUtente") == 0){
         // Estraggo il parametro dalla richiesta
