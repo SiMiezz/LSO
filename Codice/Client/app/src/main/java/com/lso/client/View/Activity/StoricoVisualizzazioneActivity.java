@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
-    private ImageButton backButton;
     private RecyclerView recyclerView;
     private TextView categoryText;
 
@@ -49,7 +48,6 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
 
         category = getIntent().getExtras().getString("category");
 
-        backButton = findViewById(R.id.back_button_storico_visualizzazione);
         recyclerView = findViewById(R.id.storico_recyclerview);
         categoryText = findViewById(R.id.category_text_storico_visualizzazione);
 

@@ -34,15 +34,6 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="25dp"/>
 
-                <ImageButton
-                    android:id="@+id/back_button_acquista_scelta_frullati"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/icon_back"
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_marginLeft="50dp"/>
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 

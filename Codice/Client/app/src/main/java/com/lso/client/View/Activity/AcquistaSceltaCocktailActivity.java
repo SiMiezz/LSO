@@ -28,7 +28,6 @@ public class AcquistaSceltaCocktailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acquista_scelta_cocktail);
 
-        backButton = findViewById(R.id.back_button_acquista_scelta_cocktail);
         disponibiliButton = findViewById(R.id.acquista_scelta_cocktail_button_disponibili);
         consigliatiButton = findViewById(R.id.acquista_scelta_cocktail_button_consigliati);
 

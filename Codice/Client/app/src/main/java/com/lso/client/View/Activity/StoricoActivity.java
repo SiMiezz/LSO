@@ -14,7 +14,6 @@ import com.lso.client.R;
 
 public class StoricoActivity extends AppCompatActivity {
 
-    private ImageButton backButton;
     private MaterialCardView cocktailButton;
     private MaterialCardView frullatiButton;
 
@@ -28,7 +27,6 @@ public class StoricoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storico);
 
-        backButton = findViewById(R.id.back_button_storico);
         cocktailButton = findViewById(R.id.cocktail_button_storico);
         frullatiButton = findViewById(R.id.frullati_button_storico);
 
@@ -37,12 +35,6 @@ public class StoricoActivity extends AppCompatActivity {
 //            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
 //        }).start();
 
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         cocktailButton.setOnClickListener(new View.OnClickListener() {
             @Override

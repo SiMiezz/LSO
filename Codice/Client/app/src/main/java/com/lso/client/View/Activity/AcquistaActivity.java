@@ -30,17 +30,9 @@ public class AcquistaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acquista);
 
-        backButton = findViewById(R.id.back_button_acquista);
         cocktailButton = findViewById(R.id.cocktail_button_acquista);
         frullatiButton = findViewById(R.id.frullati_button_acquista);
         carrelloButton = findViewById(R.id.carrello_button);
-
-        backButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         cocktailButton.setOnClickListener(new View.OnClickListener() {
             @Override

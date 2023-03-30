@@ -28,7 +28,6 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acquista_scelta_frullati);
 
-        backButton = findViewById(R.id.back_button_acquista_scelta_frullati);
         disponibiliButton = findViewById(R.id.acquista_scelta_frullati_button_disponibili);
         consigliatiButton = findViewById(R.id.acquista_scelta_frullati_button_consigliati);
 

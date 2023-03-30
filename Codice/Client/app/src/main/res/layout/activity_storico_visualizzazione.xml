@@ -47,15 +47,6 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="0.1"/>
 
-                <ImageButton
-                    android:id="@+id/back_button_storico_visualizzazione"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:src="@drawable/icon_back"
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_weight="0"/>
-
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>
 
