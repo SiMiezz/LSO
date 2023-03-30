@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.Animation;
@@ -130,6 +131,20 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
             public void onClick(View view) {
                 AcquistoInfoDialog acquistoInfoDialog = new AcquistoInfoDialog(context);
                 acquistoInfoDialog.show();
+            }
+        });
+
+        carrelloButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), CarrelloActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
             }
         });
 

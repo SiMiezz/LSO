@@ -118,6 +118,76 @@ Utente* getUtenteByEmailAndPassword(char* email, char* password){
     return utente;
 }
 
+Bevanda** getCarrelloByUtente(Utente* utente){
+
+    Bevanda** bevande;
+
+    MYSQL *conn;
+    MYSQL_RES *result;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+    
+    // Creazione query
+    char query[1024];
+    sprintf(query, "SELECT b.id,b.nome,b.prezzo,b.tipo FROM bevanda AS b JOIN carrello AS c ON b.id=c.bevanda_id WHERE c.utente_email=\"%s\"", utente->email);
+    printf("%s\n", query);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Ottenimento dei risultati della query
+    result = mysql_store_result(conn);
+
+    // Numero di righe
+    int num_rows = mysql_num_rows(result);
+
+    // Controllo se il carrello è vuoto
+    if(num_rows == 0){
+        printf("Carrello vuoto\n");
+        mysql_free_result(result);
+        mysql_close(conn);
+        return NULL;
+    }
+
+    printf("Bevande trovate\n");
+    bevande = malloc(sizeof(Bevanda*) * (num_rows + 1));
+
+    // Setto l'ultimo elemento a NULL
+    bevande[num_rows] = NULL;
+
+    // Ciclo sui risultati e stampa dei valori delle colonne
+    int i = 0;
+    while ((row = mysql_fetch_row(result)) != NULL) {
+        bevande[i] = malloc(sizeof(Bevanda));
+
+        bevande[i]->id = atoi(row[0]);
+        strcpy(bevande[i]->nome, row[1]);
+        bevande[i]->prezzo = atof(row[2]);
+        if(strcmp(row[3], "cocktail") == 0)
+            bevande[i]->tipo = 0;
+        else if(strcmp(row[3], "frullato") == 0)
+            bevande[i]->tipo = 1;
+
+        i++;
+    }
+
+    // Liberazione della memoria
+    mysql_free_result(result);
+    mysql_close(conn);
+
+    return bevande;
+
+}
+
 Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
 
     Bevanda** bevande;

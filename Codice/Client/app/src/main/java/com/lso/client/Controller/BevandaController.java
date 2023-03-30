@@ -23,6 +23,35 @@ public class BevandaController {
         gson = new Gson();
     }
 
+    public ArrayList<Bevanda> getCarrelloByUtente(Utente utente){
+        ArrayList<Bevanda> bevande = new ArrayList<>();
+        String result = null;
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("getCarrelloByUtente$$"+utenteToJson(utente));
+
+        result = connessioneController.readFromInput();
+
+        System.out.println(result);
+
+        // Separo i JSON e creo un array che riverso nell'arraylist
+        if(result != null){
+            result = result.replaceAll("\\}\\s*\\{", "},{");
+
+            result = "[" + result + "]";
+
+            Bevanda[] bevandeArray = gson.fromJson(result, Bevanda[].class);
+
+            // Fai qualcosa con l'array di oggetti Bevanda
+            for (Bevanda bevanda : bevandeArray)
+                bevande.add(bevanda);
+        }
+
+
+        return bevande;
+    }
+
     public ArrayList<Bevanda> getStoricoByUtenteAndBevandaType(Utente utente, Bevanda_Type bevanda_type){
         ArrayList<Bevanda> bevande = new ArrayList<>();
         String result = null;

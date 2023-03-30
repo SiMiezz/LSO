@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 import com.google.android.material.card.MaterialCardView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
@@ -17,6 +18,8 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
     private ImageButton backButton;
     private MaterialCardView disponibiliButton;
     private MaterialCardView consigliatiButton;
+
+    private FloatingActionButton carrelloButton;
 
     private String emailCorrente;
     private Utente utenteCorrente;
@@ -30,6 +33,8 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
 
         disponibiliButton = findViewById(R.id.acquista_scelta_frullati_button_disponibili);
         consigliatiButton = findViewById(R.id.acquista_scelta_frullati_button_consigliati);
+
+        carrelloButton = findViewById(R.id.carrello_button);
 
         disponibiliButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +63,20 @@ public class AcquistaSceltaFrullatiActivity extends AppCompatActivity {
                     intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                     String category = "Frullati";
                     intent.putExtra("category",category);
+                    startActivity(intent);
+                }).start();
+            }
+        });
+
+        carrelloButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+
+                    Intent intent = new Intent(getApplicationContext(), CarrelloActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
                     startActivity(intent);
                 }).start();
             }

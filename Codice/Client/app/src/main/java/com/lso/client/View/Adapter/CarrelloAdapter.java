@@ -38,7 +38,7 @@ public class CarrelloAdapter extends RecyclerView.Adapter<CarrelloAdapter.Carrel
 
         holder.nomeText.setText(bevanda.getNome().toUpperCase());
 
-        holder.prezzoText.setText(String.valueOf(bevanda.getPrezzo()));
+        holder.prezzoText.setText(String.valueOf(bevanda.getPrezzo())+"€");
 
     }
 

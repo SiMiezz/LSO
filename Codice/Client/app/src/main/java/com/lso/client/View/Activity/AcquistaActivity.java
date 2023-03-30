@@ -69,7 +69,14 @@ public class AcquistaActivity extends AppCompatActivity {
         carrelloButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                new Thread(()->{
+                    emailCorrente = getIntent().getExtras().getString("utenteEmail");
+                    utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
 
+                    Intent intent = new Intent(getApplicationContext(), CarrelloActivity.class);
+                    intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                    startActivity(intent);
+                }).start();
             }
         });
     }

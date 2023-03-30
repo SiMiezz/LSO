@@ -128,6 +128,36 @@ char* discriminaRichiesta(char* method, char* path){
         return json;
 
     } 
+    else if(strcmp(method, "getCarrelloByUtente") == 0){
+        // Estraggo il parametro dalla richiesta
+        char* jsonUtente = path;
+        char* json = NULL;
+
+        // Converto la stringa in un oggetto Utente
+        Utente* utente = jsonToUtente(jsonUtente);
+
+        // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
+        Bevanda** bevande = getCarrelloByUtente(utente);
+
+        if(bevande == NULL){
+            return NULL;
+        }
+
+        // Per ogni bevanda, converto l'oggetto in JSON e lo concateno alla stringa json
+        for(int i = 0; bevande[i] != NULL; i++){
+            char* jsonBevanda = bevandaToJson(bevande[i]);
+            if(json == NULL){
+                json = malloc(strlen(jsonBevanda) + 1);
+                strcpy(json, jsonBevanda);
+            }
+            else {
+                json = realloc(json, strlen(json) + strlen(jsonBevanda) + 1);
+                strcat(json, jsonBevanda);
+            }
+        }
+
+        return json;
+    }
     else if(strcmp(method, "getAllIngredienti") == 0){
         char* json = NULL;
 
