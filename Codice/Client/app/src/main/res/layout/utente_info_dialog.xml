@@ -2,7 +2,7 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="300dp"
-    android:layout_height="500dp"
+    android:layout_height="430dp"
     android:backgroundTint="@color/white"
     app:strokeColor="#787486"
     app:strokeWidth="1dp">
@@ -79,7 +79,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp">
+            android:layout_marginBottom="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -97,9 +97,136 @@
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 android:layout_marginLeft="5dp"/>
+
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#787486"
+            android:layout_marginVertical="5dp"
+            android:layout_marginHorizontal="10dp"/>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cambia Password"
+            android:textColor="#787486"
+            android:textSize="20sp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Nuova"
+                android:layout_marginLeft="10dp"
+                android:textColor="#787486"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="35dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:strokeWidth="1dp"
+                app:strokeColor="#787486"
+                android:layout_marginRight="10dp">
+
+                <EditText
+                    android:id="@+id/nuova_password_utente_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPassword"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingLeft="5dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:text="Conferma"
+                android:layout_marginLeft="10dp"
+                android:textColor="#787486"
+                android:layout_marginTop="5dp"
+                android:gravity="center_vertical"
+                android:layout_marginRight="10dp"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                app:strokeColor="#787486"
+                app:strokeWidth="1dp">
+
+                <EditText
+                    android:id="@+id/conferma_password_utente_dialog"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="@android:color/transparent"
+                    android:inputType="textPassword"
+                    android:layout_gravity="center_vertical"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:paddingLeft="5dp"/>
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+        </LinearLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/cambia_password_conferma_button"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center_horizontal"
+            android:text="CAMBIA"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:background="@drawable/shape_ok_button_dialog"
+            android:backgroundTint="@null"
+            android:layout_marginTop="10dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#787486"
+            android:layout_marginVertical="15dp"
+            android:layout_marginHorizontal="10dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/utente_dialog_ok_button"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_gravity="right"
+            android:layout_marginRight="20dp"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:background="@drawable/shape_ok_button_dialog"
+            android:backgroundTint="@null"
+            android:layout_marginTop="10dp"/>
 
     </LinearLayout>
 
