@@ -2,6 +2,7 @@ package com.lso.client.View.Activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.google.android.material.card.MaterialCardView;
 import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
+import com.lso.client.View.Dialog.UtenteInfoDialog;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -23,24 +25,31 @@ public class HomeActivity extends AppCompatActivity {
     private String emailCorrente;
     private Utente utenteCorrente;
 
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        context = this;
+
         userButton = findViewById(R.id.user_button_home);
         acquistaButton = findViewById(R.id.acquista_button_home);
         storicoButton = findViewById(R.id.storico_button_home);
 
-//        new Thread(()->{
-//            emailCorrente = getIntent().getExtras().getString("utenteEmail");
-//            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
-//        }).start();
+        new Thread(()->{
+            emailCorrente = getIntent().getExtras().getString("utenteEmail");
+            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
+        }).start();
 
         userButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(utenteCorrente != null){
+                    UtenteInfoDialog utenteInfoDialog = new UtenteInfoDialog(context, utenteCorrente);
+                    utenteInfoDialog.show();
+                }
             }
         });
 
