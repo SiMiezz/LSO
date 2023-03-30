@@ -174,35 +174,11 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginHorizontal="70dp"
-                    app:cardCornerRadius="10dp"
-                    android:backgroundTint="#f34">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Registra FaceId"
-                    android:gravity="center"
-                    android:textSize="20sp"
-                    android:textColor="@color/white"
-                    android:textStyle="bold"/>
-
-                <Button
-                    android:id="@+id/registra_volto_button_signup"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@android:color/transparent" />
-
-                </com.google.android.material.card.MaterialCardView>
 
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="50dp"
                     android:layout_marginHorizontal="30dp"
                     app:cardCornerRadius="10dp"
                     android:backgroundTint="#FE7E07">

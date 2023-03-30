@@ -34,7 +34,6 @@ public class SignupActivity extends AppCompatActivity {
     private EditText nomeText;
     private EditText cognomeText;
 
-    private Button registraVoltoButton;
 
     private Button registraButton;
     private Context context;
@@ -53,17 +52,7 @@ public class SignupActivity extends AppCompatActivity {
         confirmPasswordText = findViewById(R.id.confirm_password_text_signup);
         nomeText = findViewById(R.id.nome_text_signup);
         cognomeText = findViewById(R.id.cognome_text_signup);
-
-        registraVoltoButton = findViewById(R.id.registra_volto_button_signup);
-
         registraButton = findViewById(R.id.registra_button_signup);
-
-        registraVoltoButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
 
         registraButton.setOnClickListener(new View.OnClickListener() {
             @Override
