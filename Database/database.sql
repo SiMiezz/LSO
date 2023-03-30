@@ -75,8 +75,8 @@ DROP TABLE IF EXISTS `carrello`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carrello` (
-  `bevanda_id` int DEFAULT NULL,
   `utente_email` varchar(50) DEFAULT NULL,
+  `bevanda_id` int DEFAULT NULL,
   KEY `fk_carrello_1_idx` (`utente_email`),
   KEY `fk_carrello_2_idx` (`bevanda_id`),
   CONSTRAINT `fk_carrello_1` FOREIGN KEY (`utente_email`) REFERENCES `utente` (`email`) ON DELETE CASCADE ON UPDATE CASCADE,
@@ -165,6 +165,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
+INSERT INTO `utente` VALUES ('gi.addati','ok','GianMarco','Addati');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -177,4 +178,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-30 15:46:14
+-- Dump completed on 2023-03-30 15:56:36
