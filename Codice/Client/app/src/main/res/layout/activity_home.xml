@@ -35,11 +35,11 @@
                     android:layout_marginLeft="25dp"/>
 
                 <ImageButton
-                    android:id="@+id/logout_button_home"
+                    android:id="@+id/user_button_home"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/icon_logout"
+                    android:src="@drawable/icon_user_circle"
                     android:backgroundTint="@android:color/transparent"
                     android:layout_marginLeft="140dp"/>
 

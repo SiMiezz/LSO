@@ -14,7 +14,7 @@ import com.lso.client.R;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private ImageButton logoutButton;
+    private ImageButton userButton;
     private MaterialCardView acquistaButton;
     private MaterialCardView storicoButton;
 
@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        logoutButton = findViewById(R.id.logout_button_home);
+        userButton = findViewById(R.id.user_button_home);
         acquistaButton = findViewById(R.id.acquista_button_home);
         storicoButton = findViewById(R.id.storico_button_home);
 
@@ -37,7 +37,7 @@ public class HomeActivity extends AppCompatActivity {
 //            utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
 //        }).start();
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        userButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
