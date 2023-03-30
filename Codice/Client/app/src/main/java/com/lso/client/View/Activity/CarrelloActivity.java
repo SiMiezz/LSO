@@ -5,6 +5,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -64,6 +65,10 @@ public class CarrelloActivity extends AppCompatActivity {
                     new Thread(()->{
                         for(Bevanda bevanda : bevandaArrayList)
                             bevandaController.acquistaBevanda(utenteCorrente, bevanda);
+
+                        Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
+                        intent.putExtra("utenteEmail", utenteCorrente.getEmail());
+                        startActivity(intent);
                     }).start();
                 }
             }
