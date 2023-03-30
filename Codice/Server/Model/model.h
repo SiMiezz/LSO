@@ -45,5 +45,7 @@ Bevanda* jsonToBevanda(char* json);
 Ingrediente* jsonToIngrediente(char* json);
 Utente* jsonToUtente(char* json);
 
+Ingrediente** jsonMultipliToIngredienti(char* json);
+
 
 #endif

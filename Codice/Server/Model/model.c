@@ -198,6 +198,46 @@ Utente* jsonToUtente(char* json){
 }
 
 
+Ingrediente** jsonMultipliToIngredienti(char* jsonIngredienti){
+
+    int numIngredienti = 0;
+    for (int i = 0; jsonIngredienti[i] != '\0'; i++) {
+        if (jsonIngredienti[i] == '{') {
+            numIngredienti++;
+        }
+    }
+
+    Ingrediente** ingredienti = malloc(sizeof(Ingrediente*) * (numIngredienti + 1));
+
+    const char* start = jsonIngredienti;
+    const char* end = jsonIngredienti;
+    int i = 0;
+    while (*end != '\0') {
+        if (*end == '{') {
+            start = end;
+        } else if (*end == '}') {
+            // crea una sottostringa contenente l'oggetto JSON
+            int len = (int)(end - start) + 1;
+            char* jsonString = malloc(len + 1);
+            strncpy(jsonString, start, len);
+            jsonString[len] = '\0';
+
+            // converte la stringa JSON in un oggetto Ingrediente
+            Ingrediente* ingrediente = jsonToIngrediente(jsonString);
+            ingredienti[i++] = ingrediente;
+
+            // passa al prossimo oggetto JSON
+            start = end + 1;
+        }
+        end++;
+    }
+
+    ingredienti[i] = NULL;
+
+    return ingredienti;
+}
+
+
 
 
 

@@ -236,25 +236,9 @@ char* discriminaRichiesta(char* method, char* path){
         else if(strcmp(charRecenti, "false") == 0)
             recenti = false;
 
-        Ingrediente** ingredienti; 
-        // jsonIngredienti è del tipo {json1}{json2}{json3}, quindi devo dividere la stringa in più sottostringhe e convertirle in oggetti Ingrediente 
-        // e poi inserirli in un array di puntatori a Ingrediente
-        char* jsonIngrediente = strtok(jsonIngredienti, "{}");
-        int i = 0;
-        while(jsonIngrediente != NULL){
-            Ingrediente* ingrediente = jsonToIngrediente(jsonIngrediente);
-            if(ingredienti == NULL){
-                ingredienti = malloc(sizeof(Ingrediente*));
-                ingredienti[i] = ingrediente;
-            }
-            else {
-                ingredienti = realloc(ingredienti, sizeof(Ingrediente*) * (i + 1));
-                ingredienti[i] = ingrediente;
-            }
-            jsonIngrediente = strtok(NULL, "{}");
-            i++;
-        }
-        
+        Ingrediente** ingredienti;
+        if(jsonIngredienti != NULL)
+            ingredienti = jsonMultipliToIngredienti(jsonIngredienti);
 
         // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
         Bevanda** bevande = getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(utente, tipo, recenti, ingredienti);
