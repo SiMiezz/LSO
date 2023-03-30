@@ -42,29 +42,6 @@ LOCK TABLES `acquisto` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `bar`
---
-
-DROP TABLE IF EXISTS `bar`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `bar` (
-  `nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`nome`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `bar`
---
-
-LOCK TABLES `bar` WRITE;
-/*!40000 ALTER TABLE `bar` DISABLE KEYS */;
-INSERT INTO `bar` VALUES ('bar_due'),('bar_tre'),('bar_uno');
-/*!40000 ALTER TABLE `bar` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `bevanda`
 --
 
@@ -76,10 +53,7 @@ CREATE TABLE `bevanda` (
   `nome` varchar(50) NOT NULL,
   `prezzo` float NOT NULL,
   `tipo` enum('cocktail','frullato') NOT NULL,
-  `bar_nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_bevanda_1_idx` (`bar_nome`),
-  CONSTRAINT `fk_bevanda_1` FOREIGN KEY (`bar_nome`) REFERENCES `bar` (`nome`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -89,8 +63,33 @@ CREATE TABLE `bevanda` (
 
 LOCK TABLES `bevanda` WRITE;
 /*!40000 ALTER TABLE `bevanda` DISABLE KEYS */;
-INSERT INTO `bevanda` VALUES (1,'gin tonic',6,'cocktail','bar_uno'),(2,'frullato misto',7,'frullato','bar_uno');
+INSERT INTO `bevanda` VALUES (1,'gin tonic',6,'cocktail'),(2,'frullato misto',7,'frullato'),(3,'negroni',8,'cocktail'),(4,'old fashioned',8,'cocktail'),(5,'spritz',6,'cocktail');
 /*!40000 ALTER TABLE `bevanda` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `carrello`
+--
+
+DROP TABLE IF EXISTS `carrello`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carrello` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `utente_email` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_carrello_1_idx` (`utente_email`),
+  CONSTRAINT `fk_carrello_1` FOREIGN KEY (`utente_email`) REFERENCES `utente` (`email`) ON DELETE RESTRICT ON UPDATE RESTRICT
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `carrello`
+--
+
+LOCK TABLES `carrello` WRITE;
+/*!40000 ALTER TABLE `carrello` DISABLE KEYS */;
+/*!40000 ALTER TABLE `carrello` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -155,10 +154,7 @@ CREATE TABLE `utente` (
   `password` varchar(50) NOT NULL,
   `nome` varchar(50) NOT NULL,
   `cognome` varchar(50) NOT NULL,
-  `bar_nome` varchar(50) NOT NULL,
-  PRIMARY KEY (`email`),
-  KEY `fk_utente_1_idx` (`bar_nome`),
-  CONSTRAINT `fk_utente_1` FOREIGN KEY (`bar_nome`) REFERENCES `bar` (`nome`) ON DELETE CASCADE ON UPDATE CASCADE
+  PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -168,9 +164,23 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('gi.addati','ok','Gian Marco','Addati','bar_uno'),('simi.giordano','ok','Simone','Giordano','bar_uno');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `crea_carrello` AFTER INSERT ON `utente` FOR EACH ROW INSERT INTO carrello (utente_email) VALUES (NEW.email) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -181,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-12 19:07:36
+-- Dump completed on 2023-03-30 15:40:28
