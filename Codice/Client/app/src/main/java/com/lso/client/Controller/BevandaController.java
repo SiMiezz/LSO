@@ -129,8 +129,22 @@ public class BevandaController {
         return bevande;
     }
 
-    public void acquistaBevanda(Utente utente, Bevanda bevanda){
+    public void aggiungiACarrello(Utente utente, Bevanda bevanda){
 
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("aggiungiACarrello$$"+utenteToJson(utente)+"$$"+bevandaToJson(bevanda));
+
+        connessioneController.closeConnection();
+
+    }
+
+    public void acquistaBevanda(Utente utente, Bevanda bevanda){
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("acquistaBevanda$$"+utenteToJson(utente)+"$$"+bevandaToJson(bevanda));
+
+        connessioneController.closeConnection();
     }
 
     public String bevandaToJson(Bevanda bevanda){

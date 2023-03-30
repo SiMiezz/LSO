@@ -503,7 +503,7 @@ Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* u
     return bevande;
 }
 
-void acquistaBevanda(Utente* utente, Bevanda* bevanda){
+void aggiungiACarrello(Utente* utente, Bevanda* bevanda){
 
     MYSQL *conn;
     MYSQL_ROW row;
@@ -518,6 +518,35 @@ void acquistaBevanda(Utente* utente, Bevanda* bevanda){
     // Creazione Query
     char query[1024];
     sprintf(query, "INSERT INTO carrello (utente_email, bevanda_id) VALUES ('%s', %d)", utente->email, bevanda->id);
+    printf("%s\n", query);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Liberazione della memoria
+    mysql_close(conn);
+
+    printf("Bevanda aggiunta al carrello\n");
+}
+
+void acquistaBevanda(Utente* utente, Bevanda* bevanda){
+
+    MYSQL *conn;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[1024];
+    sprintf(query, "DELETE FROM carrello WHERE utente_email=\"%s\" AND bevanda_id=%d", utente->email, bevanda->id);
     printf("%s\n", query);
 
     // Esecuzione di una query

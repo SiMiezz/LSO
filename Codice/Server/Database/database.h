@@ -13,6 +13,7 @@ Ingrediente** getAllIngredienti();
 Ingrediente** getIngredientiByBevanda(Bevanda* bevanda);
 Bevanda** getDisponibiliByBevandaType(Bevanda_Type bevanda_type);
 Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* utente, Bevanda_Type bevanda_type, bool recenti, Ingrediente** ingredienti);
+void aggiungiACarrello(Utente* utente, Bevanda* bevanda);
 void acquistaBevanda(Utente* utente, Bevanda* bevanda);
 void registraUtente(Utente* utente);
 void cambiaPasswordUtente(Utente* utente, char* nuovaPassword);

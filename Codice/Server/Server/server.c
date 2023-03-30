@@ -264,11 +264,24 @@ char* discriminaRichiesta(char* method, char* path){
         return json;
         
     }
+    else if(strcmp(method, "aggiungiACarrello") == 0){
+        // Estraggo i due parametri della richiesta
+        char* jsonUtente = strtok(path, "$$");
+        char* jsonBevanda = path + strlen(jsonUtente) + 2;
+
+        // Converto le stringhe in oggetti Utente e Bevanda
+        Utente* utente = jsonToUtente(jsonUtente);
+        Bevanda* bevanda = jsonToBevanda(jsonBevanda);
+
+        // Chiamo la funzione del database
+        aggiungiACarrello(utente, bevanda);
+
+        return "Bevanda aggiunta al carrello";
+    }
     else if(strcmp(method, "acquistaBevanda") == 0){
         // Estraggo i due parametri della richiesta
         char* jsonUtente = strtok(path, "$$");
         char* jsonBevanda = path + strlen(jsonUtente) + 2;
-        char* json = NULL;
 
         // Converto le stringhe in oggetti Utente e Bevanda
         Utente* utente = jsonToUtente(jsonUtente);
