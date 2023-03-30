@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 
+import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
 
@@ -25,6 +26,8 @@ public class UtenteInfoDialog extends Dialog {
 
     private EditText nuovaPassword;
     private EditText confermaPassword;
+
+    private UtenteController utenteController = new UtenteController();
 
     public UtenteInfoDialog(@NonNull Context context, Utente utenteCorrente) {
         super(context);
@@ -55,6 +58,20 @@ public class UtenteInfoDialog extends Dialog {
             @Override
             public void onClick(View view) {
                 dismiss();
+            }
+        });
+
+        cambiaPasswordButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(nuovaPassword.getText().toString().equals(confermaPassword.getText().toString())){
+                    new Thread(()->{
+                        utenteController.cambiaPasswordUtente(utenteCorrente, nuovaPassword.getText().toString());
+                    }).start();
+
+                    nuovaPassword.setText("");
+                    confermaPassword.setText("");
+                }
             }
         });
 

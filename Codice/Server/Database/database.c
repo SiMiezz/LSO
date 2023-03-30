@@ -561,3 +561,32 @@ void registraUtente(Utente* utente){
     printf("Utente registrato\n");
 
 }
+
+void cambiaPasswordUtente(Utente* utente, char* nuovaPassword){
+
+    MYSQL *conn;
+    MYSQL_ROW row;
+
+    // Connessione al database
+    conn = mysql_init(NULL);
+    if (!mysql_real_connect(conn, "localhost", "root", "password", "bar_lso", 0, NULL, 0)){
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Creazione Query
+    char query[1024];
+    sprintf(query, "UPDATE utente SET password = '%s' WHERE email = '%s'", nuovaPassword, utente->email);
+
+    // Esecuzione di una query
+    if (mysql_query(conn, query)) {
+        fprintf(stderr, "%s\n", mysql_error(conn));
+        exit(1);
+    }
+
+    // Liberazione della memoria
+    mysql_close(conn);
+
+    printf("Password cambiata\n");
+
+}

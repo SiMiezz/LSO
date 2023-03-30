@@ -291,6 +291,19 @@ char* discriminaRichiesta(char* method, char* path){
 
         return "Utente registrato";
     }
+    else if(strcmp(method, "cambiaPasswordUtente") == 0){
+        // Estraggo i due parametri dalla richiesta
+        char* jsonUtente = strtok(path, "$$");
+        char* nuovaPassword = path + strlen(jsonUtente) + 2;
+
+        // Converto la stringa in un oggetto Utente
+        Utente* utente = jsonToUtente(jsonUtente);
+
+        // Chiamo la funzione del database
+        cambiaPasswordUtente(utente, nuovaPassword);
+
+        return "Password cambiata";
+    }
     else {
         return "Metodo non supportato";
     }

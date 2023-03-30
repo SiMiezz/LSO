@@ -15,6 +15,7 @@ Bevanda** getDisponibiliByBevandaType(Bevanda_Type bevanda_type);
 Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* utente, Bevanda_Type bevanda_type, bool recenti, Ingrediente** ingredienti);
 void acquistaBevanda(Utente* utente, Bevanda* bevanda);
 void registraUtente(Utente* utente);
+void cambiaPasswordUtente(Utente* utente, char* nuovaPassword);
 
 
 #endif

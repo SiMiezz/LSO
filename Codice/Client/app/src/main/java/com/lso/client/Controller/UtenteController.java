@@ -87,6 +87,16 @@ public class UtenteController {
 
     }
 
+    public void cambiaPasswordUtente(Utente utente, String nuovaPassword){
+
+        connessioneController.startConnection();
+
+        connessioneController.writeOnOutput("cambiaPasswordUtente$$"+utenteToJson(utente)+"$$"+nuovaPassword);
+
+        connessioneController.closeConnection();
+
+    }
+
 
     public String utenteToJson(Utente utente){
         String json = gson.toJson(utente);
