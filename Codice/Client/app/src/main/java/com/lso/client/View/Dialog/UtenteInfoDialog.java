@@ -2,6 +2,7 @@ package com.lso.client.View.Dialog;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -13,6 +14,8 @@ import androidx.appcompat.widget.AppCompatButton;
 import com.lso.client.Controller.UtenteController;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
+import com.lso.client.View.Activity.HomeActivity;
+import com.lso.client.View.Activity.LoginActivity;
 
 public class UtenteInfoDialog extends Dialog {
 
@@ -23,15 +26,19 @@ public class UtenteInfoDialog extends Dialog {
 
     private AppCompatButton cambiaPasswordButton;
     private AppCompatButton okButton;
+    private AppCompatButton logoutButton;
 
     private EditText nuovaPassword;
     private EditText confermaPassword;
 
+    private HomeActivity homeActivity;
+
     private UtenteController utenteController = new UtenteController();
 
-    public UtenteInfoDialog(@NonNull Context context, Utente utenteCorrente) {
+    public UtenteInfoDialog(@NonNull Context context, Utente utenteCorrente, HomeActivity homeActivity) {
         super(context);
         this.utenteCorrente = utenteCorrente;
+        this.homeActivity = homeActivity;
     }
 
     @Override
@@ -49,6 +56,7 @@ public class UtenteInfoDialog extends Dialog {
 
         cambiaPasswordButton = findViewById(R.id.cambia_password_conferma_button);
         okButton = findViewById(R.id.utente_dialog_ok_button);
+        logoutButton = findViewById(R.id.utente_dialog_logout_button);
 
         emailText.setText(utenteCorrente.getEmail());
         nomeText.setText(utenteCorrente.getNome());
@@ -72,6 +80,15 @@ public class UtenteInfoDialog extends Dialog {
                     nuovaPassword.setText("");
                     confermaPassword.setText("");
                 }
+            }
+        });
+
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dismiss();
+                homeActivity.finishAffinity();
+                homeActivity.startActivity(new Intent(homeActivity, LoginActivity.class));
             }
         });
 

@@ -47,7 +47,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(utenteCorrente != null){
-                    UtenteInfoDialog utenteInfoDialog = new UtenteInfoDialog(context, utenteCorrente);
+                    UtenteInfoDialog utenteInfoDialog = new UtenteInfoDialog(context, utenteCorrente, (HomeActivity) context);
                     utenteInfoDialog.show();
                 }
             }

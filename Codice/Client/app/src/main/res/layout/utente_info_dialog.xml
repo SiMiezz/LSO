@@ -214,19 +214,38 @@
             android:layout_marginVertical="15dp"
             android:layout_marginHorizontal="10dp"/>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/utente_dialog_ok_button"
-            android:layout_width="100dp"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:layout_marginRight="20dp"
-            android:text="OK"
-            android:textColor="@color/white"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:background="@drawable/shape_ok_button_dialog"
-            android:backgroundTint="@null"
-            android:layout_marginTop="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/utente_dialog_logout_button"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="LOGOUT"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/shape_logout_button_dialog"
+                android:backgroundTint="@null"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="20dp"/>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/utente_dialog_ok_button"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:text="OK"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:background="@drawable/shape_ok_button_dialog"
+                android:backgroundTint="@null"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="55dp"
+                android:layout_marginRight="20dp"/>
+        </LinearLayout>
+
 
     </LinearLayout>
 
