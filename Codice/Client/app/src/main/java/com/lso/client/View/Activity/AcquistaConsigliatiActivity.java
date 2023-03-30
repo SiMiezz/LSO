@@ -166,10 +166,14 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
         }
     }
 
-    public void cartAnimation(){
+    public void cartAnimation(Bevanda bevanda){
         Animation bounceAnimation = AnimationUtils.loadAnimation(this, R.anim.bounce_animation);
 
         carrelloButton.startAnimation(bounceAnimation);
+
+        new Thread(()->{
+            bevandaController.aggiungiACarrello(utenteCorrente, bevanda);
+        }).start();
     }
 
     public void getIngredientiByBevanda(Context context, Bevanda bevanda){

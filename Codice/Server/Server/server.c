@@ -267,8 +267,12 @@ char* discriminaRichiesta(char* method, char* path){
             recenti = false;
 
         Ingrediente** ingredienti;
-        if(jsonIngredienti != NULL)
+        if(jsonIngredienti != NULL){
             ingredienti = jsonMultipliToIngredienti(jsonIngredienti);
+        } else {
+            ingredienti = NULL;
+        }
+            
 
         // Chiamo la funzione del database, converto l'oggetto in JSON e lo restituisco
         Bevanda** bevande = getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(utente, tipo, recenti, ingredienti);

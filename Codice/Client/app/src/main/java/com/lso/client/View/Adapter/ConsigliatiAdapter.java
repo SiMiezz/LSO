@@ -55,9 +55,8 @@ public class ConsigliatiAdapter extends RecyclerView.Adapter<ConsigliatiAdapter.
         holder.cardView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-                //aggiunta al carrello
                 AcquistaConsigliatiActivity acquistaConsigliatiActivity = (AcquistaConsigliatiActivity) context;
-                acquistaConsigliatiActivity.cartAnimation();
+//                acquistaConsigliatiActivity.cartAnimation(bevanda);
                 return true;
             }
         });
