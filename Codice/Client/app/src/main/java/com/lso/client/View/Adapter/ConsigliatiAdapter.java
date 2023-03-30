@@ -56,7 +56,7 @@ public class ConsigliatiAdapter extends RecyclerView.Adapter<ConsigliatiAdapter.
             @Override
             public boolean onLongClick(View view) {
                 AcquistaConsigliatiActivity acquistaConsigliatiActivity = (AcquistaConsigliatiActivity) context;
-//                acquistaConsigliatiActivity.cartAnimation(bevanda);
+                acquistaConsigliatiActivity.cartAnimation(bevanda);
                 return true;
             }
         });

@@ -57,7 +57,7 @@ public class DisponibiliAdapter extends RecyclerView.Adapter<DisponibiliAdapter.
             @Override
             public boolean onLongClick(View view) {
                 AcquistaDisponibiliActivity acquistaDisponibiliActivity = (AcquistaDisponibiliActivity) context;
-//                acquistaDisponibiliActivity.cartAnimation(bevanda);
+                acquistaDisponibiliActivity.cartAnimation(bevanda);
                 return true;
             }
         });
