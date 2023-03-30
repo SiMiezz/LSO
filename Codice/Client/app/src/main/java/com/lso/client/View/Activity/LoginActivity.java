@@ -31,7 +31,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.password_text_login);
         accediButton = findViewById(R.id.accedi_button_login);
         registratiLink = findViewById(R.id.registrati_link_text_login);
-        
+
 
         accediButton.setOnClickListener(new View.OnClickListener() {
             @Override
