@@ -51,7 +51,6 @@ Utente* getUtenteByEmail(char* email){
         strcpy(utente->password, row[1]);
         strcpy(utente->nome, row[2]);
         strcpy(utente->cognome, row[3]);
-        strcpy(utente->bar_nome, row[4]);
     }
 
     // Liberazione della memoria
@@ -110,7 +109,6 @@ Utente* getUtenteByEmailAndPassword(char* email, char* password){
         strcpy(utente->password, row[1]);
         strcpy(utente->nome, row[2]);
         strcpy(utente->cognome, row[3]);
-        strcpy(utente->bar_nome, row[4]);
     }
 
     // Liberazione della memoria
@@ -140,7 +138,7 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
 
     // Creazione Query 
     char query[1024];
-    sprintf(query, "SELECT b.id,b.nome,b.prezzo,b.tipo,b.bar_nome FROM bevanda AS b JOIN acquisto AS a ON b.id=a.bevanda_id WHERE a.utente_email=\"%s\" AND b.tipo=%d", utente->email, tipo);
+    sprintf(query, "SELECT b.id,b.nome,b.prezzo,b.tipo FROM bevanda AS b JOIN acquisto AS a ON b.id=a.bevanda_id WHERE a.utente_email=\"%s\" AND b.tipo=%d", utente->email, tipo);
     printf("%s\n", query);
 
     // Esecuzione di una query
@@ -181,7 +179,6 @@ Bevanda** getStoricoByUtenteAndBevandaType(Utente* utente, Bevanda_Type tipo){
             bevande[i]->tipo = 0;
         else if(strcmp(row[3], "frullato") == 0)
             bevande[i]->tipo = 1;
-        strcpy(bevande[i]->bar_nome, row[4]);
 
         i++;
     }
@@ -378,7 +375,6 @@ Bevanda** getDisponibiliByBevandaType(Bevanda_Type tipo){
             bevande[i]->tipo = 0;
         else if(strcmp(row[3], "frullato") == 0)
             bevande[i]->tipo = 1;
-        strcpy(bevande[i]->bar_nome, row[4]);
 
         i++;
     }
@@ -424,6 +420,8 @@ Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* u
         i++;
         }
     }
+
+    printf("%d\n", i);
 
     if(i == 0)
         ingredienti_string[0] = '\0';
@@ -494,7 +492,6 @@ Bevanda** getConsigliatiByUtenteAndBevandaTypeAndRecentiAndIngredienti(Utente* u
             bevande[j]->tipo = 0;
         else if(strcmp(row[3], "frullato") == 0)
             bevande[j]->tipo = 1;
-        strcpy(bevande[j]->bar_nome, row[4]);
 
         j++;
     }
@@ -549,7 +546,7 @@ void registraUtente(Utente* utente){
 
     // Creazione Query
     char query[1024];
-    sprintf(query, "INSERT INTO utente (email, password, nome, cognome, bar_nome) VALUES ('%s', '%s', '%s', '%s', '%s')", utente->email, utente->password, utente->nome, utente->cognome, utente->bar_nome);
+    sprintf(query, "INSERT INTO utente (email, password, nome, cognome) VALUES ('%s', '%s', '%s', '%s')", utente->email, utente->password, utente->nome, utente->cognome);
     printf("%s\n", query);
 
     // Esecuzione di una query

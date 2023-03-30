@@ -8,7 +8,6 @@ public class Bevanda {
     private String nome;
     private Float prezzo;
     private Bevanda_Type tipo;
-    private String bar_nome;
 
     public Bevanda(){
 
@@ -19,12 +18,11 @@ public class Bevanda {
         this.prezzo = prezzo;
     }
 
-    public Bevanda(Integer id, String nome, Float prezzo, Bevanda_Type tipo, String bar_nome) {
+    public Bevanda(Integer id, String nome, Float prezzo, Bevanda_Type tipo) {
         this.id = id;
         this.nome = nome;
         this.prezzo = prezzo;
         this.tipo = tipo;
-        this.bar_nome = bar_nome;
     }
 
     public Integer getId() {
@@ -59,11 +57,5 @@ public class Bevanda {
         this.tipo = tipo;
     }
 
-    public String getBar_nome() {
-        return bar_nome;
-    }
 
-    public void setBar_nome(String bar_nome) {
-        this.bar_nome = bar_nome;
-    }
 }

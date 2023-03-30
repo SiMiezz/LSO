@@ -78,7 +78,7 @@ public class SignupActivity extends AppCompatActivity {
                     if(password.equals(confirmPassword)){
 
                         new Thread(()->{
-                            Utente utente = new Utente(username, password, nome, cognome, "bar_uno");
+                            Utente utente = new Utente(username, password, nome, cognome);
                             utenteController.registraUtente(utente);
 
 
