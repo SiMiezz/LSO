@@ -517,7 +517,7 @@ void acquistaBevanda(Utente* utente, Bevanda* bevanda){
 
     // Creazione Query
     char query[1024];
-    sprintf(query, "INSERT INTO acquisto (utente_email, bevanda_id) VALUES ('%s', %d)", utente->email, bevanda->id);
+    sprintf(query, "INSERT INTO carrello (utente_email, bevanda_id) VALUES ('%s', %d)", utente->email, bevanda->id);
     printf("%s\n", query);
 
     // Esecuzione di una query
