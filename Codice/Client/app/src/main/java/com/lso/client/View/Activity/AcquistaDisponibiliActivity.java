@@ -22,6 +22,7 @@ import com.lso.client.Model.Ingrediente;
 import com.lso.client.Model.Utente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.DisponibiliAdapter;
+import com.lso.client.View.Dialog.AcquistoInfoDialog;
 import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
@@ -47,12 +48,16 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
     private String emailCorrente;
     private Utente utenteCorrente;
 
+    private Context context;
+
     private UtenteController utenteController = new UtenteController();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_acquista_disponibili);
+
+        context = this;
 
         this.category = getIntent().getExtras().getString("category");
 
@@ -85,6 +90,15 @@ public class AcquistaDisponibiliActivity extends AppCompatActivity {
             });
 
         }).start();
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AcquistoInfoDialog acquistoInfoDialog = new AcquistoInfoDialog(context);
+                acquistoInfoDialog.show();
+
+            }
+        });
 
 
 

@@ -27,6 +27,7 @@ import com.lso.client.Model.Utente;
 import com.lso.client.R;
 import com.lso.client.View.Adapter.ConsigliatiAdapter;
 import com.lso.client.View.Adapter.IngredientiSpinnerAdapter;
+import com.lso.client.View.Dialog.AcquistoInfoDialog;
 import com.lso.client.View.Dialog.BevandaInfoDialog;
 
 import java.util.ArrayList;
@@ -121,6 +122,14 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
                     });
 
                 }).start();
+            }
+        });
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AcquistoInfoDialog acquistoInfoDialog = new AcquistoInfoDialog(context);
+                acquistoInfoDialog.show();
             }
         });
 
