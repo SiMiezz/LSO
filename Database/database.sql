@@ -38,7 +38,6 @@ CREATE TABLE `acquisto` (
 
 LOCK TABLES `acquisto` WRITE;
 /*!40000 ALTER TABLE `acquisto` DISABLE KEYS */;
-INSERT INTO `acquisto` VALUES ('gi.addati',1),('gi.addati',2),('gi.addati',3),('gi.addati',3),('gi.addati',5),('gi.addati',5),('gi.addati',5),('gi.addati',1),('gi.addati',2),('gi.addati',5),('gi.addati',3),('gi.addati',4);
 /*!40000 ALTER TABLE `acquisto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +131,6 @@ CREATE TABLE `contiene` (
 
 LOCK TABLES `contiene` WRITE;
 /*!40000 ALTER TABLE `contiene` DISABLE KEYS */;
-INSERT INTO `contiene` VALUES (1,'gin'),(1,'acqua tonica'),(1,'ghiaccio'),(1,'limone'),(2,'latte'),(2,'succo di ananas'),(2,'succo di fragola'),(2,'latte');
 /*!40000 ALTER TABLE `contiene` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,7 +179,7 @@ CREATE TABLE `utente` (
 
 LOCK TABLES `utente` WRITE;
 /*!40000 ALTER TABLE `utente` DISABLE KEYS */;
-INSERT INTO `utente` VALUES ('gi.addati','ok','GianMarco','Addati');
+INSERT INTO `utente` VALUES ('gi.addati','ok','Gian Marco','Addati'),('simi.giordano','ok','Simone','Giordano');
 /*!40000 ALTER TABLE `utente` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -194,4 +192,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-30 17:18:26
+-- Dump completed on 2023-03-31 12:29:12
