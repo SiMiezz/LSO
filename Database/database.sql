@@ -38,6 +38,7 @@ CREATE TABLE `acquisto` (
 
 LOCK TABLES `acquisto` WRITE;
 /*!40000 ALTER TABLE `acquisto` DISABLE KEYS */;
+INSERT INTO `acquisto` VALUES ('gi.addati',1),('gi.addati',2),('gi.addati',3),('gi.addati',3),('gi.addati',5),('gi.addati',5),('gi.addati',5),('gi.addati',1),('gi.addati',2),('gi.addati',5),('gi.addati',3),('gi.addati',4);
 /*!40000 ALTER TABLE `acquisto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -193,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-30 16:02:38
+-- Dump completed on 2023-03-30 17:18:26

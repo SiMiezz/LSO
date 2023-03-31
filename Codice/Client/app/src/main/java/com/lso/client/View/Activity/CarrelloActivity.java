@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.lso.client.Controller.BevandaController;
 import com.lso.client.Controller.UtenteController;
@@ -26,6 +27,8 @@ public class CarrelloActivity extends AppCompatActivity {
     private String emailCorrente;
     private Utente utenteCorrente;
 
+    private TextView totaleCarrello;
+
     private ArrayList<Bevanda> bevandaArrayList;
 
     private CarrelloAdapter carrelloAdapter;
@@ -40,6 +43,7 @@ public class CarrelloActivity extends AppCompatActivity {
 
         recyclerView = findViewById(R.id.carrello_recyclerview);
         acquistaButton = findViewById(R.id.carrello_acquista_button);
+        totaleCarrello = findViewById(R.id.totale_carrello_text);
 
         bevandaArrayList = new ArrayList<>();
 
@@ -48,6 +52,11 @@ public class CarrelloActivity extends AppCompatActivity {
             utenteCorrente = utenteController.getUtenteByEmail(emailCorrente);
 
             bevandaArrayList = bevandaController.getCarrelloByUtente(utenteCorrente);
+
+            runOnUiThread(()->{
+                totaleCarrello.setText(String.valueOf(calcolaTotale(bevandaArrayList))+" €");
+            });
+
             carrelloAdapter = new CarrelloAdapter(this, bevandaArrayList);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
             linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
@@ -90,5 +99,14 @@ public class CarrelloActivity extends AppCompatActivity {
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         }
+    }
+
+    public float calcolaTotale(ArrayList<Bevanda> bevandaArrayList){
+        float result = 0;
+
+        for(Bevanda bevanda : bevandaArrayList)
+            result += bevanda.getPrezzo();
+
+        return result;
     }
 }
