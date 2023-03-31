@@ -38,6 +38,7 @@ CREATE TABLE `acquisto` (
 
 LOCK TABLES `acquisto` WRITE;
 /*!40000 ALTER TABLE `acquisto` DISABLE KEYS */;
+INSERT INTO `acquisto` VALUES ('gi.addati',1),('gi.addati',2),('gi.addati',2),('gi.addati',3),('gi.addati',3),('gi.addati',4),('gi.addati',4),('gi.addati',4),('gi.addati',4),('gi.addati',5),('gi.addati',5),('gi.addati',6),('gi.addati',7),('gi.addati',7),('gi.addati',8),('gi.addati',8),('gi.addati',8),('gi.addati',8),('gi.addati',8),('gi.addati',9),('gi.addati',9),('gi.addati',9),('gi.addati',9);
 /*!40000 ALTER TABLE `acquisto` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -63,7 +64,7 @@ CREATE TABLE `bevanda` (
 
 LOCK TABLES `bevanda` WRITE;
 /*!40000 ALTER TABLE `bevanda` DISABLE KEYS */;
-INSERT INTO `bevanda` VALUES (1,'gin tonic',6,'cocktail'),(2,'frullato misto',7,'frullato'),(3,'negroni',8,'cocktail'),(4,'old fashioned',8,'cocktail'),(5,'spritz',6,'cocktail');
+INSERT INTO `bevanda` VALUES (1,'gin tonic',6,'cocktail'),(2,'frullato misto',7,'frullato'),(3,'negroni',8,'cocktail'),(4,'old fashioned',8,'cocktail'),(5,'spritz',6,'cocktail'),(6,'margarita',7,'cocktail'),(7,'mojito',8,'cocktail'),(8,'smoothie al mango',6,'frullato'),(9,'frullato di fragole',6.5,'frullato');
 /*!40000 ALTER TABLE `bevanda` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -131,6 +132,7 @@ CREATE TABLE `contiene` (
 
 LOCK TABLES `contiene` WRITE;
 /*!40000 ALTER TABLE `contiene` DISABLE KEYS */;
+INSERT INTO `contiene` VALUES (1,'gin'),(1,'acqua tonica'),(1,'ghiaccio'),(1,'limone'),(3,'gin'),(3,'vermouth rosso'),(3,'campari'),(3,'ghiaccio'),(4,'angostura'),(4,'whisky'),(4,'ghiaccio'),(5,'prosecco'),(5,'Aperol'),(5,'soda'),(5,'ghiaccio'),(2,'ghiaccio'),(2,'latte di cocco'),(2,'yogurt'),(2,'latte'),(2,'limone'),(2,'succo di ananas'),(2,'succo di fragola'),(6,'tequila'),(6,'lime'),(6,'ghiaccio'),(7,'rum bianco'),(7,'lime'),(7,'zucchero di canna'),(7,'menta'),(7,'ghiaccio'),(8,'mango'),(8,'latte di mandorla'),(8,'yogurt'),(8,'ghiaccio'),(9,'succo di fragola'),(9,'latte'),(9,'limone'),(9,'zucchero'),(9,'ghiaccio');
 /*!40000 ALTER TABLE `contiene` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -153,7 +155,7 @@ CREATE TABLE `ingrediente` (
 
 LOCK TABLES `ingrediente` WRITE;
 /*!40000 ALTER TABLE `ingrediente` DISABLE KEYS */;
-INSERT INTO `ingrediente` VALUES ('acqua tonica'),('angostura'),('ghiaccio'),('gin'),('latte'),('limone'),('rum'),('succo di ananas'),('succo di fragola'),('vodka'),('whisky');
+INSERT INTO `ingrediente` VALUES ('acqua tonica'),('angostura'),('aperol'),('campari'),('ghiaccio'),('gin'),('latte'),('latte di cocco'),('latte di mandorla'),('lime'),('limone'),('mango'),('menta'),('prosecco'),('rum'),('rum bianco'),('soda'),('succo di ananas'),('succo di fragola'),('tequila'),('vermouth rosso'),('vodka'),('whisky'),('yogurt'),('zucchero'),('zucchero di canna');
 /*!40000 ALTER TABLE `ingrediente` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -192,4 +194,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-03-31 12:29:12
+-- Dump completed on 2023-03-31 12:50:51
