@@ -25,13 +25,9 @@ public class ConnessioneController {
 
     public void startConnection(){
         try{
-            System.out.println("inizio");
             socket = new Socket(serverName, serverPort);
-            System.out.println("inizio2");
             input = new BufferedReader(new InputStreamReader( socket.getInputStream()));
-            System.out.println("inizio3");
             output = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-            System.out.println("fine start");
         } catch (IOException e){
             e.printStackTrace();
         }

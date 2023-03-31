@@ -102,7 +102,6 @@ public class StoricoVisualizzazioneActivity extends AppCompatActivity {
             ingredienteArrayList = ingredienteController.getIngredientiByBevanda(bevanda);
 
             runOnUiThread(()->{
-                System.out.println("miao2");
                 BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, ingredienteArrayList);
                 bevandaInfoDialog.show();
             });

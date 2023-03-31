@@ -181,7 +181,6 @@ public class AcquistaConsigliatiActivity extends AppCompatActivity {
             ingredienteArrayListPerDialog = ingredienteController.getIngredientiByBevanda(bevanda);
 
             runOnUiThread(()->{
-                System.out.println("miao2");
                 BevandaInfoDialog bevandaInfoDialog = new BevandaInfoDialog(context, ingredienteArrayListPerDialog);
                 bevandaInfoDialog.show();
             });

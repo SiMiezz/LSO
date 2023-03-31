@@ -43,35 +43,29 @@ public class UtenteController {
 
     public Utente getUtenteByEmailAndPassword(String email, String password){
 
-        System.out.println("inizio metodo");
 
         Utente utente = null;
         String result = null;
 
         connessioneController.startConnection();
 
-        System.out.println("dopo connessione");
 
         //richiesta
         connessioneController.writeOnOutput("getUtenteByEmailAndPassword$$"+email+"$$"+password);
 
-        System.out.println("dopo scrittura");
 
         //ricezione
         result = connessioneController.readFromInput();
 
         System.out.println(result);
 
-        System.out.println("dopo lettura");
 
         // conversione da json ad oggetto
         utente = jsonToUtente(result);
 
-        System.out.println("dopo conversione");
 
         connessioneController.closeConnection();
 
-        System.out.println("dopo chiusura");
 
         return utente;
     }
